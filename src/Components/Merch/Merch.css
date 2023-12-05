@@ -1,0 +1,8 @@
+.mainMerchDiv {
+    background-color: rgb(20, 20, 20);
+    color: antiquewhite;
+    width: 100%;
+    height: fit-content;
+    padding: 20px;
+    font-size: 3vw;
+}

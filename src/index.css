@@ -1,0 +1,10 @@
+* {
+    font-family: 'Macondo', cursive;
+}
+body {
+    height: fit-content;
+    background-image: url('../src/assets/crowd.jpg');
+    background-size: 1750px;
+    background-position-y: -170px;
+    margin: 0;
+}

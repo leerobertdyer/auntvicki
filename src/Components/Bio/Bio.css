@@ -1,0 +1,47 @@
+.mainBioDiv {
+    width: 80vw;
+    height: fit-content;
+    padding: 30px;
+    border: solid goldenrod 3px;
+    margin: 30px auto;
+    background-color: rgba(0, 0, 0, .9);
+    color: antiquewhite;
+    font-size: 2vw;
+}
+
+.bioTitle {
+    font-size: 3vw;
+    text-align: center;
+    color: lightskyblue;
+    
+}
+
+.bioText {
+    font-family: 'Libre Baskerville', serif;
+    line-height: 1.5;
+    letter-spacing: .08rem;
+}
+
+.bigLines {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 3vw;
+}
+
+.genres {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 3vw;
+    color: orange;
+}
+
+.red {
+    font-family: 'Libre Baskerville', serif;
+    color: red;
+}
+
+.rockLegends {
+    font-style: italic;
+}
+
+.catchy {
+ color: lightskyblue;
+}

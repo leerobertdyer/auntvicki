@@ -1,0 +1,21 @@
+.mainNavDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 5px;
+}
+
+.navLink {
+    background-color: white;
+    padding: 20px;
+    color: black;
+    border: black solid 1px;
+    width: 100px;
+    text-align: center;
+}
+
+.navLink:hover {
+    transition: .6s;
+    background-color: rgb(62, 61, 61);
+    color: antiquewhite;
+}

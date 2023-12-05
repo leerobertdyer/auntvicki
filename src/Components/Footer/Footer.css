@@ -1,0 +1,15 @@
+.mainFooterDiv {
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .8);
+    width: 100vw;
+    color: antiquewhite;
+    font-size: 2vw;
+    margin: 0;
+}
+
+.mainFooterDiv a {
+    color: aquamarine;
+    font-size: 3vw;
+}

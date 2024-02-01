@@ -1,11 +1,10 @@
-import EpkSlideComponent from '../../Components/EpkSlideComponent/EpkSlideComponent'
 
 import './EPK.css'
 
 const EPK = () => {
   return (
         <div className='mainEPKDiv'>
-<EpkSlideComponent/>
+
             {/* In here we want
         1. BIO
         3. Notable Shows

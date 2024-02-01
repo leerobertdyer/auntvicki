@@ -1,12 +1,18 @@
 import './EpkSlideComponent.css'
 
-const EpkSlideComponent = () => {
+interface EpkSlideComponentProps {
+  photoUrl: string,
+  text: string
+
+}
+
+const EpkSlideComponent: React.FC<EpkSlideComponentProps> = ({ photoUrl, text }) => {
   return (
-    <div className='epkSlideComponentMainDiv' style={{backgroundImage: `url('src/assets/avLogo.png')`, backgroundSize: 'cover'}}>
-               <p className='epkSlideComponentText'>
-                PHOTOS & ART
-                </p> 
-                </div>
+    <div className='epkSlideComponentMainDiv' style={{ backgroundImage: `url('${photoUrl}')`, backgroundSize: 'cover' }}>
+      <p className='epkSlideComponentText'>
+        {text}
+      </p>
+    </div>
   )
 }
 

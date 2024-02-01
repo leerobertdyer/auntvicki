@@ -29,7 +29,7 @@ function Header() {
                         target="_blank">
                         <button className='headerBtn'><span className='cheetahText'>Follow Us On Spotify!</span></button></a>
                 </div>
-        <p className='photoCredit'><FaCameraRetro/> by Geddi Monroe</p>
+        <p className='photoCredit' style={{position: 'absolute'}}><FaCameraRetro/> by <a href="https://www.geddimonroe.com/" target="_blank">Geddi Monroe</a></p>
             </div>
         </div>
     )

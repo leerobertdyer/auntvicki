@@ -1,5 +1,5 @@
 import './Merch.css'
-import Nav from '../Nav/Nav'
+import Nav from '../../Components/Nav/Nav'
 
 function Merch() {
     return (

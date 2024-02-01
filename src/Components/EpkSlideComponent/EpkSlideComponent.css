@@ -1,0 +1,30 @@
+
+.epkSlideComponentMainDiv {
+    width: 30vw;
+    height: 300px;
+    min-width: 200px;
+    min-height: 300px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border: solid white 1px;
+    -webkit-box-shadow: 4px 10px 40px 21px rgba(255, 255, 255, .5);
+    -moz-box-shadow: 4px 10px 40px 21px rgba(255, 255, 255,.5);
+    box-shadow: 4px 10px 40px 21px rgba(255, 255, 255, .5);
+}
+
+.epkSlideComponentMainDiv:hover {
+    transition: 1.4s;
+    cursor: pointer;
+    transform: scale(110%);
+}
+
+.epkSlideComponentText {
+    color: white;
+    background-color: rgba(24, 24, 24, .8);
+    padding: 20px;
+    border-radius: 22px;
+    width: 70%;
+    text-align: center;
+}

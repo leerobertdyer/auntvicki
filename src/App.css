@@ -2,3 +2,7 @@
     margin: 0;
     overflow-y: scroll;
 }
+
+a {
+    color: inherit;
+}

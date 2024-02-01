@@ -1,8 +1,6 @@
 import './Videos.css'
 import { useEffect, useState } from 'react'
 
-console.log(import.meta.env.VITE_GOOGLE_CALENDAR_API_KEY)
-
 function Videos() {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth)
 
@@ -14,8 +12,8 @@ window.addEventListener('resize', () => {
 
   return (
     <div className='mainVideosDiv'>
-        <iframe className="youtubeIframe" width={windowWidth * .8} height={windowWidth * .4} src="https://www.youtube.com/embed/Yg_q40mY48c" title="Aunt Vicki - Lights Out (Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-        <iframe className="youtubeIframe" width={windowWidth * .8} height={windowWidth * .4} src="https://www.youtube.com/embed/SrD2nilSt2I" title="Aunt Vicki - Vigil (Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+        <iframe className="youtubeIframe" width={windowWidth * .8} height={windowWidth * .4} src="https://www.youtube.com/embed/SrD2nilSt2I" title="Aunt Vicki - Vigil (Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; " allowFullScreen></iframe>
+        <iframe className="youtubeIframe" width={windowWidth * .8} height={windowWidth * .4} src="https://www.youtube.com/embed/Yg_q40mY48c" title="Aunt Vicki - Lights Out (Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; " allowFullScreen></iframe>
     </div>
   )
 }

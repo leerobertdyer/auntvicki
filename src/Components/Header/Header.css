@@ -1,9 +1,14 @@
+.headerBackground {
+    background-image: url('../src/assets/fullband2.jpg');
+    background-size: 100vw;
+}
 .mainHeaderDiv {
     top: 0;
     height: fit-content;
     width: 100vw;
     background-color: rgba(0, 0, 0, .6);
     padding-bottom: 40px;
+    margin: 0;
 }
 
 .iconAndQuoteDiv {
@@ -11,38 +16,21 @@
     justify-content: space-evenly;
 }
 
-.quote {
-    color: antiquewhite;
-    text-align: center;
-    font-size: 4vw;
-    margin: 15px 0 5px 0;
-}
-
-.quote:hover {
-    cursor: pointer;
-    background: rgba(0, 0, 0, .6)
-}
 
 .underQuote {
-    margin-left: 60%;
-    margin-top: 0;
+    margin: 0 auto;
     background-color: rgba(0, 0, 0, .6);
-    padding: 10px;
-    border-radius: 12px;
+    padding: 10px 30px 20px 30px;
+    border-radius: 22px;
     text-align: center;
     width: fit-content;
-    font-size: 5vw;
-    color: antiquewhite;
+    font-size: 60px;
+    font-family: 'Shizuru';
+    color: rgb(255, 154, 169);
 }
 
-.underQuoteLeft {
-    font-family: 'Shizuru';
-    color: rgb(126, 189, 229);
-}
-
-.underQuoteRight {
-    font-family: 'Shizuru';
-    color: #FF4040;
+.spacingSpan {
+    width: 15px;
 }
 
 .headerBtnDiv {
@@ -54,25 +42,82 @@
     width: 100%;
 }
 
-button {
+
+.headerBtn {
+    color: white;
+    background-image: url('../../assets/cheetah.jpeg');
+    background-size: cover;
     font-size: 3vw;
     width: 38vw;
     height: 12vw;
-    border: double antiquewhite 3px;
-    color: antiquewhite;
-    cursor: pointer;
+    max-width: 370px;
+    max-height: 135px;
+    min-width: 320px;
+    min-height: 100px;
+    border: solid gold 3px;
+    border-radius: 22px;
 }
 
-button:hover {
-    background-color: antiquewhite;
-    border: double goldenrod 1px;
+.headerBtn:hover {
+    border: lightpink solid 3px;
+    cursor: pointer;
+
+}
+
+.headerBtn:hover>* {
+    background-color: rgba(248, 176, 187.9);
     color: black;
 }
 
-.shopBtn {
-    background-color: rgb(46, 110, 46);
+.cheetahText {
+    padding: 15px 15px;
+    background-color: rgba(24, 24, 24, .8);
+    border-radius: 10px;
+    font-size: 30px;
 }
 
-.spotifyBtn {
-    background-color: black;
+.photoCredit {
+    color: white;
+    width: 95%;
+    text-align: right;
+    position: absolute;
+    padding: 0;
+}
+
+.coolAunt {
+    color: white;
+}
+
+@media (max-width: 500px) {
+    .coolAunt {
+        font-size: 18px;
+    }
+    .underQuote {
+        font-size: 30px;
+    }
+
+    .headerBtn {
+        min-width: 110px;
+        min-height: 55px;
+    }
+
+    .cheetahText {
+        font-size: 10px;
+        padding: 15px 35px;
+    }
+
+    .headerBackground {
+        background-position-y: -100px;
+        background-position-x: -100px;
+    }
+
+    .photoCredit {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 895px) {
+    .headerBackground {
+        background-size: 900px;
+    }
 }

@@ -12,10 +12,13 @@
     border: black solid 1px;
     width: 100px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .navLink:hover {
     transition: .6s;
-    background-color: rgb(62, 61, 61);
-    color: antiquewhite;
+    background-color: rgba(24, 24, 24, .9);
+    color: lightpink;
 }

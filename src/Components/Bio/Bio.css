@@ -1,9 +1,19 @@
+.bioBackground {
+    background-color: rgb(24, 24, 24);
+    margin: 0;
+    padding: 30px 0;
+    border-top: solid white 3px;
+    border-bottom: solid white 3px;
+}
+
 .mainBioDiv {
     width: 80vw;
     height: fit-content;
     padding: 30px;
     border: solid goldenrod 3px;
-    margin: 30px auto;
+    border-radius: 22px;
+    padding-top: 20px;
+    margin: 0 auto;
     background-color: rgba(0, 0, 0, .9);
     color: antiquewhite;
     font-size: 2vw;
@@ -12,8 +22,7 @@
 .bioTitle {
     font-size: 3vw;
     text-align: center;
-    color: lightskyblue;
-    
+
 }
 
 .bioText {
@@ -33,9 +42,9 @@
     color: orange;
 }
 
-.red {
+.rebellious {
     font-family: 'Libre Baskerville', serif;
-    color: red;
+    color: lightpink;
 }
 
 .rockLegends {
@@ -43,5 +52,5 @@
 }
 
 .catchy {
- color: lightskyblue;
+ color: lightpink;
 }

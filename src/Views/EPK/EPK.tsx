@@ -29,8 +29,8 @@ const EPK = () => {
             title: "Wax Vinyl Records UK Review",
             link: 'https://waxvinylrecords.co.uk/aunt-vickis-time-is-on-your-side-a-sonic-journey-of-discovery/',
             summary: "Aunt Vicki’s “Time Is On Your Side” offers a fantastic sonic experience that begins with the lazy, soothing vibes reminiscent of a mid-career Beatles track. The song conjures feelings akin to the Revolver era, with its thoughtful and melodic approach. However, as it unfolds, the track gradually builds in pace and intensity, leading to a grand and powerful finish that takes you by surprise.",
-            photo: 'public/photos/gravity.jpg',
-            audio: 'public/audio/time.mp3',
+            photo: '/photos/gravity.jpg',
+            audio: '/audio/time.mp3',
             credit: 'Geddi Monroe'
         },
 
@@ -38,8 +38,8 @@ const EPK = () => {
             title: 'From The Straight Review',
             link: 'https://fromthestrait.com/articles/the-rundown-october-29-2023/',
             summary: "Different Suits talks about the many life paths you can try out. Erin (the songwriter for this one) has been a sculptor, jewelry maker, clothing designer, life coach, and most recently a musician. So the chorus and bridge talk about trying things on literally, and casting them off if they aren’t working for you.",
-            photo: 'public/photos/epicErinAngel.jpg',
-            audio: 'public/audio/different.mp3',
+            photo: '/photos/epicErinAngel.jpg',
+            audio: '/audio/different.mp3',
             credit: 'Sam Bennett'
         }
     ]
@@ -191,7 +191,7 @@ const EPK = () => {
 
 
                                 : <div className='topPhotoEpk'>
-                                    <img src='public/photos/eyes.png' className='eyesPhoto' alt='' />
+                                    <img src='/photos/eyes.png' className='eyesPhoto' alt='' />
                                     <div className='avepkText'>
                                         <p>EPK</p>
                                     </div>

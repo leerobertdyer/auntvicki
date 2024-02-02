@@ -1,5 +1,5 @@
 .headerBackground {
-    background-image: url('public/photos/fullband2.jpg');
+    background-image: url('/photos/fullband2.jpg');
     background-size: cover;
 }
 .mainHeaderDiv {

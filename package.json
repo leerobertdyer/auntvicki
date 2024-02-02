@@ -13,6 +13,7 @@
     "@types/gapi": "^0.0.47",
     "@types/node": "^20.11.14",
     "axios": "^1.6.7",
+    "flickr-sdk": "^7.0.0-beta.7",
     "gapi-script": "^1.2.0",
     "moment": "^2.30.1",
     "react": "^18.2.0",

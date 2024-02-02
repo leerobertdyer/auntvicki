@@ -7,6 +7,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import { FaCameraRetro } from "react-icons/fa";
 import Bio from '../../Components/Bio/Bio'
 import { Link } from 'react-router-dom';
+import { getPhotos } from "../../flickr"
+import { Gallery } from '../../Components/Gallery/Gallery';
 
 interface IcurrentVideo {
     src: string,
@@ -23,6 +25,22 @@ interface IcurrentPress {
     iframe?: string
 }
 
+interface Iphoto {
+    farm: number;
+    height_o: number;
+    id: string;
+    isfamily: number;
+    isfriend: number;
+    ispublic: number;
+    owner: string;
+    secret: string;
+    server: string;
+    title: string;
+    url_o: string;
+    width_o: number;
+}
+
+
 const EPK = () => {
 
     const allPressElements: IcurrentPress[] = [
@@ -38,7 +56,7 @@ const EPK = () => {
         {
             title: 'From The Straight Review',
             summary: "Different Suits talks about the many life paths you can try out. Erin (the songwriter for this one) has been a sculptor, jewelry maker, clothing designer, life coach, and most recently a musician. So the chorus and bridge talk about trying things on literally, and casting them off if they aren’t working for you.",
-            photo: '/photos/epicErinAngel.jpg',
+            photo: 'https://drive.google.com/file/d/1-zO7ycN_Dm6pXpe0ugjBvVbjh9oZ5gZL/view?usp=drive_link',
             link: 'https://fromthestrait.com/articles/the-rundown-october-29-2023/',
             audio: '/audio/different.mp3',
             credit: 'Sam Bennett'
@@ -46,7 +64,7 @@ const EPK = () => {
         {
             title: "Loose Fit Radio Interview 103.3FM AVL",
             summary: "We got the whole band in the studio and I think we only swore once! Talked about Cheap Talk, and the recording process. Ernesto was an awesome host!",
-            iframe: "https://www.youtube-nocookie.com/embed/A5ms22_xzcE"
+            iframe: "https://www.youtube-nocookie/embed/A5ms22_xzcE"
         },
         {
             title: 'WNC Original Music Podcast',
@@ -74,8 +92,6 @@ const EPK = () => {
         }
     ]
 
-
-
     const [showVideos, setShowVideos] = useState<boolean>(false)
     const [showBio, setShowBio] = useState<boolean>(false)
     const [showPhotos, setShowPhotos] = useState<boolean>(false)
@@ -84,6 +100,24 @@ const EPK = () => {
     const [currentVideo, setCurrentVideo] = useState<IcurrentVideo>(allVideos[videoIndex])
     const [pressIndex, setPressIndex] = useState<number>(0)
     const [currentPress, setCurrentPress] = useState<IcurrentPress>(allPressElements[pressIndex])
+    const [allPhotos, setAllPhotos] = useState([])
+    const [photoIndex, setPhotoIndex] = useState<number>(0)
+
+    useEffect(() => {
+        
+
+        const fetchPhotos = async () => {
+            const photos = await getPhotos();
+            console.log(photos)
+            const nextPhotos = photos.map((photo: Iphoto) => (
+                {
+                    link: photo.url_o
+                }
+            ))
+            setAllPhotos(nextPhotos)
+        }
+        fetchPhotos();
+    }, [])
 
     useEffect(() => {
         setCurrentVideo(allVideos[videoIndex])
@@ -95,11 +129,11 @@ const EPK = () => {
     function setAllAudioVolume(volume: number) {
         const audioElements = document.querySelectorAll('audio');
         audioElements.forEach((audio) => {
-          audio.volume = volume;
+            audio.volume = volume;
         });
-      }
-      
-      setAllAudioVolume(0.1);
+    }
+
+    setAllAudioVolume(0.1);
 
 
 
@@ -149,6 +183,25 @@ const EPK = () => {
         }
     }
 
+
+    const handleSetPhotoIndex = (direction: 'RIGHT' | 'LEFT') => {
+        if (direction === "LEFT" ) {
+            if ( photoIndex > 1){
+                setPhotoIndex(photoIndex - 1)
+            }
+            else {
+                setPhotoIndex(allPhotos.length -1)
+            }
+        } 
+        if (direction === "RIGHT") {
+            if (photoIndex < allPhotos.length -2) {
+                setPhotoIndex(photoIndex + 1)
+            }
+        } else {
+            setPhotoIndex(allPhotos[0])
+        }
+    }
+
     return (
         <>
             <div className='mainEPKDiv'>
@@ -179,13 +232,21 @@ const EPK = () => {
                             <Bio />
                         </div>
 
+
                         : showPhotos
                             ? <div className='epkSelectionDiv'>
                                 <div className='bigXDiv'>
+                                    <IoIosArrowBack className="bigControls" onClick={() => handleSetPhotoIndex('LEFT')} />
                                     <p onClick={() => setShowPhotos(false)} className='bigX epkX'>X</p>
+                                    <IoIosArrowForward className="bigControls" onClick={() => handleSetPhotoIndex('RIGHT')} />
+                                </div>
+                                <div className='epkInnerDiv'>
+                
+                                    <Gallery photos={allPhotos} photoIndex={photoIndex} />
                                 </div>
 
                             </div>
+
 
                             : showPress
 
@@ -199,15 +260,15 @@ const EPK = () => {
                                     <div className='epkInnerDiv'>
                                         <h1>{currentPress.title} </h1>
                                         <p className='pressSummary'>{currentPress.summary}</p>
-                                         {currentPress.audio &&    <audio src={currentPress.audio} controls style={{margin: '10px'}}></audio> }
-                                             {currentPress.iframe && <iframe src={currentPress.iframe} width="640" height="480" allow="autoplay"></iframe>}
-                                       {currentPress.link && <>
-                                        <a href={currentPress.link} target="_blank" className='picAndLink'>
-                                             <img src={currentPress.photo} alt="" className='pressPhoto'></img>
- 
-                                             Read The Full Article!</a>
-                                            <p className='photoCredit' style={{width: '100%', textAlign: 'center', marginTop: '15px'}}><FaCameraRetro/> by <a href="https://www.geddimonroe.com/" target="_blank">{currentPress.credit}</a></p> 
-                                       </>}
+                                        {currentPress.audio && <audio src={currentPress.audio} controls style={{ margin: '10px' }}></audio>}
+                                        {currentPress.iframe && <iframe src={currentPress.iframe} width="640" height="480" allow="autoplay"></iframe>}
+                                        {currentPress.link && <>
+                                            <a href={currentPress.link} target="_blank" className='picAndLink'>
+                                                <img src={currentPress.photo} alt="" className='pressPhoto'></img>
+
+                                                Read The Full Article!</a>
+                                            <p className='photoCredit' style={{ width: '100%', textAlign: 'center', marginTop: '15px' }}><FaCameraRetro /> by <a href="https://www.geddimonroe.com/" target="_blank">{currentPress.credit}</a></p>
+                                        </>}
                                     </div>
                                 </div>
 

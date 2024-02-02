@@ -18,6 +18,8 @@ interface Ievent{
 const Home = () => {
     const [events, setEvents] = useState<Ievent[]>([])
 
+
+
     useEffect(() => {
         const fetchEvents = async () => {
             const now = new Date()

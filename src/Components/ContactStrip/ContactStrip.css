@@ -1,0 +1,7 @@
+.mainContactStripDiv {
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+    height: 10vh;
+    background-color: rgb(255, 33, 118);
+}

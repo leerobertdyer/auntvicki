@@ -1,17 +1,18 @@
 
 .epkSlideComponentMainDiv {
-    width: 30vw;
+    width: 20vmax;
     height: 300px;
-    min-width: 200px;
-    min-height: 300px;
+    min-width: 160px;
+    min-height: 200px;
+    max-width: 250px;
     border-radius: 12px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     border: solid white 1px;
-    -webkit-box-shadow: 4px 10px 40px 21px rgba(255, 255, 255, .5);
-    -moz-box-shadow: 4px 10px 40px 21px rgba(255, 255, 255,.5);
-    box-shadow: 4px 10px 40px 21px rgba(255, 255, 255, .5);
+    -webkit-box-shadow: 4px 10px 37px -3px rgba(250,245,250,1);
+    -moz-box-shadow: 4px 10px 37px -3px rgba(250,245,250,1);
+    box-shadow: 4px 10px 37px -3px rgba(250,245,250,1);
 }
 
 .epkSlideComponentMainDiv:hover {

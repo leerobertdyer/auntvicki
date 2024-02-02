@@ -54,7 +54,9 @@ const Home = () => {
     return (
         <>
             <Header />
+            <div style={{backgroundColor: "rgb(24, 24, 24)", padding: "15px", borderTop: "solid white 3px", borderBottom: "solid white 3px"}}>
             <Bio />
+            </div>
             <Videos />
             <Event events={events} />
             <Footer />

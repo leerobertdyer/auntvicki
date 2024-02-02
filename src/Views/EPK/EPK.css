@@ -1,10 +1,137 @@
 .mainEPKDiv {
-    background-image: url('../../assets/cheetah.jpeg');
+    background-image: url('../../assets/photos/cheetah.jpeg');
     background-size: cover;
     overscroll-behavior-block: none;
     width: 100vw;
-    height: 100vh;
+    height: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
+}
+
+.eyesPhoto {
+    width: 50vw;
+}
+
+.homeBtn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+.homeBtn:hover {
+    cursor: pointer;
+    background-color: rgba(24, 24, 24, .9);
+    color: lightpink;
+}
+
+.topPhotoEpk {
+    height: fit-content;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 0;
+    background-color: rgba(24, 24, 24, .5);
+}
+
+.avepkText {
+    position: absolute;
+    color: white;
+    font-size: 50px;
+    top: 10vw;
+    width: 100%;
+    text-align: center;
+}
+
+.epkFooter {
+    position: sticky;
+    bottom: 0;
+}
+
+.epkSelectionDiv {
+    height: fit-content;
+    width: 80vw;
+    background-color: rgba(24, 24, 24, .9);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.epkX {
+    background-color: red;
+    font-size: 40px;
+    height: 40px;
+}
+
+.bigXDiv {
+width: 100%;
+display: flex;
+justify-content: space-evenly;
+margin-top: -15px;
+padding-bottom: 10px;
+}
+
+.bigXDiv:hover {
+    cursor: pointer;
+}
+
+.epkInnerDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: 95%;
+    height:fit-content;
+    padding-bottom: 55px;
+}
+
+.youtubeIframeEPK {
+    height: 38vw;
+    width: 50vw;
+    min-width: 300px;
+    min-height: 200px;
+    max-height: 500px;
+    border: none;
+    border-radius: 25px;
+    -webkit-box-shadow: 4px 10px 37px -3px rgba(250,245,250,1);
+    -moz-box-shadow: 4px 10px 37px -3px rgba(250,245,250,1);
+    box-shadow: 4px 10px 37px -3px rgba(250,245,250,1);
+}
+
+.bigControls {
+background-color: black;
+padding: 10px;
+border-radius: 35px;
+font-size: 45px;
+}
+
+.picAndLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pressPhoto {
+    width: 300px;
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+
+@media (max-width: 600px) {
+    .avepkText {
+        font-size: 25px;
+    }
 }

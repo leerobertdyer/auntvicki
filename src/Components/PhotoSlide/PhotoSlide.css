@@ -1,0 +1,7 @@
+.mainPhotoSlideDiv {
+    display: flex;
+    width: 95vw;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}

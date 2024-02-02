@@ -1,5 +1,5 @@
 .headerBackground {
-    background-image: url('../src/assets/fullband2.jpg');
+    background-image: url('../src/assets/photos/fullband2.jpg');
     background-size: 100vw;
 }
 .mainHeaderDiv {
@@ -45,7 +45,7 @@
 
 .headerBtn {
     color: white;
-    background-image: url('../../assets/cheetah.jpeg');
+    background-image: url('../../assets/photos/cheetah.jpeg');
     background-size: cover;
     font-size: 3vw;
     width: 38vw;
@@ -65,13 +65,14 @@
 }
 
 .headerBtn:hover>* {
-    background-color: rgba(248, 176, 187.9);
-    color: black;
+    background-color: rgba(24, 24, 24, .8);
+    color: lightpink
 }
 
 .cheetahText {
     padding: 15px 15px;
-    background-color: rgba(24, 24, 24, .8);
+    background-color: rgba(248, 176, 187.9);
+    color: black;
     border-radius: 10px;
     font-size: 30px;
 }
@@ -88,6 +89,8 @@
     color: white;
 }
 
+
+
 @media (max-width: 500px) {
     .coolAunt {
         font-size: 18px;
@@ -102,7 +105,7 @@
     }
 
     .cheetahText {
-        font-size: 10px;
+        font-size: 2vw;
         padding: 15px 35px;
     }
 

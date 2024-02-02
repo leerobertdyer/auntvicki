@@ -1,7 +1,10 @@
 .headerBackground {
-    background-image: url('/photos/fullband2.jpg');
+    background-image: url('/photos/fullBand2.jpg');
     background-size: cover;
+        width: fit-content;
+        height: fit-content;
 }
+
 .mainHeaderDiv {
     top: 0;
     height: fit-content;

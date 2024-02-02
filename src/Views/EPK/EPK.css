@@ -1,5 +1,5 @@
 .mainEPKDiv {
-    background-image: url('../../public/photos/cheetah.jpeg');
+    background-image: url('/photos/cheetah.jpeg');
     background-size: cover;
     overscroll-behavior-block: none;
     width: 100vw;

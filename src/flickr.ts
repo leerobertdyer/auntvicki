@@ -8,7 +8,17 @@ const apiUrl = 'https://api.flickr.com/services/rest/';
 // const { flickr } = createFlickr(API_KEY)
 
 
+
 export async function getPhotos() {
+
+    function shuffleArray<T>(array: T[]): T[] {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
     const params = new URLSearchParams({
         method: 'flickr.photos.search',
         api_key: API_KEY,
@@ -25,7 +35,10 @@ export async function getPhotos() {
 try {
     const response = await fetch(url)
     const data = await response.json();
-    return data.photos.photo
+    
+    const photos = data.photos.photo
+    shuffleArray(photos)
+    return photos
 } catch (error) {
     console.error(`error getting photos: ${error}`)
 }

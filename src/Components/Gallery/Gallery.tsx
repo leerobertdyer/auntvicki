@@ -13,6 +13,7 @@ interface GalleryProps {
 export const Gallery = ({ photos, photoIndex }: GalleryProps) => {
   const [showPopup, setShowPopup] = useState<boolean>(false)
   const [bigImage, setBigImage] = useState<string>('')
+  const [grid, setGrid] = useState<boolean>(true)
 
   const handleDownloadClick = (link: string) => {
     setBigImage(link)
@@ -39,13 +40,14 @@ export const Gallery = ({ photos, photoIndex }: GalleryProps) => {
       {showPopup &&
         <div className="galleryPopup">
           <img src={bigImage} width="100%" alt="" />
-          <button onClick={() => downloadPhoto(bigImage)}>Download</button>
+          <button className="downloadBtn" onClick={() => downloadPhoto(bigImage)}>Download</button>
+          <button className="backBtn" onClick={() => setShowPopup(false)}>Go Back</button>
         </div>}
 
       <div className="mainGalleryDiv">
-        {photos && photos.length > 0 &&
-          <>
-            {photos.slice(photoIndex, photoIndex + 3).map((photo, key) => (
+        {photos && photos.length > 0 && !grid
+          ? <>
+            {photos.slice(photoIndex, photoIndex + 1).map((photo, key) => (
               <div key={key} className="outerGalleryDiv">
 
                 {
@@ -62,10 +64,22 @@ export const Gallery = ({ photos, photoIndex }: GalleryProps) => {
               </div>
             ))}
           </>
+          : <>
+          <div className="mainGridPhotoDiv">
+  {photos.slice(photoIndex, photoIndex + 16).map((photo) => (
+    <div className="gridPhotoDiv">
+      <img onClick={() => handleDownloadClick(photo.link)} src={photo.link} alt="" width="100%" height="100%" style={{objectFit: 'cover', objectPosition: 'center'}}/>
+    </div>
+  ))}
+  </div>
+          </>
         }
 
       </div>
       <h2 className="explanation">Click any photo to enlarge/download</h2>
+      <h3 onClick={() => setGrid(!grid)}
+      className="explanation gridButton"
+      >{grid ? 'Switch to Slide' : 'Switch to Grid'}</h3>
     </>
   )
 }

@@ -104,11 +104,9 @@ const EPK = () => {
     const [photoIndex, setPhotoIndex] = useState<number>(0)
 
     useEffect(() => {
-        
 
         const fetchPhotos = async () => {
             const photos = await getPhotos();
-            console.log(photos)
             const nextPhotos = photos.map((photo: Iphoto) => (
                 {
                     link: photo.url_o
@@ -134,8 +132,6 @@ const EPK = () => {
     }
 
     setAllAudioVolume(0.1);
-
-
 
 
     const arrowHelper = (
@@ -186,7 +182,7 @@ const EPK = () => {
 
     const handleSetPhotoIndex = (direction: 'RIGHT' | 'LEFT') => {
         if (direction === "LEFT" ) {
-            if ( photoIndex > 1){
+            if ( photoIndex > 0){
                 setPhotoIndex(photoIndex - 1)
             }
             else {
@@ -197,9 +193,10 @@ const EPK = () => {
             if (photoIndex < allPhotos.length -2) {
                 setPhotoIndex(photoIndex + 1)
             }
-        } else {
-            setPhotoIndex(allPhotos[0])
-        }
+            else {
+                setPhotoIndex(0)
+            }
+        } 
     }
 
     return (

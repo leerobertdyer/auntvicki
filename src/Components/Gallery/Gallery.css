@@ -12,7 +12,6 @@
     overflow: hidden;
 }
 .galleryPhotoDiv:hover {
-    transform: scale(110%);
     cursor: pointer;
 }
 
@@ -32,7 +31,73 @@
 }
 
 .explanation {
-    width: 100%;
+    width: fit-content;
+    margin: 0 auto;
     text-align: center;
     margin-top: 50px;
+    background-color: rgb(24, 24, 24);
+    padding: 15px;
+    border-radius: 22px;
+}
+.gridButton {
+    border: solid white 1px;
+}
+.gridButton:hover {
+    cursor: pointer;
+}
+
+.mainGridPhotoDiv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+}
+
+.gridPhotoDiv {
+    width: 150px;
+    height: 150px;
+    border: solid white 1px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.gridPhotoDiv:hover {
+    cursor: pointer;
+}
+
+.downloadBtn {
+    position: fixed;
+    right: 10px;
+    top: 15px;
+    width: 150px;
+    height: 40px;
+    border: solid pink 1px;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, .8);
+    color: white;
+}
+.downloadBtn:hover {
+    cursor: pointer;
+}
+
+.backBtn {
+    position: fixed;
+    right: 200px;
+    top: 15px;
+    width: 150px;
+    height: 40px;
+    border: solid pink 1px;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, .8);
+    color: white;
+}
+.backBtn:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    .gridPhotoDiv {
+        width: 60px;
+        height: 60px;
+    }
 }

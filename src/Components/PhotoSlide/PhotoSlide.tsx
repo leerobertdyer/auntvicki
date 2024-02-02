@@ -13,19 +13,19 @@ interface IPhotoSlide {
 export const PhotoSlide: React.FC<IPhotoSlide> = ({ onPhotoSelection }) => {
     const slides:Islides[] = [
         {
-            photoUrl: 'src/assets/photos/erinSteppin.jpg',
+            photoUrl: 'public/photos/erinSteppin.jpg',
             text: 'PRESS/BRAGS'
         },
         {
-            photoUrl: 'src/assets/photos/drewLights.jpg',
+            photoUrl: 'public/photos/drewLights.jpg',
             text: 'PHOTOS/ART'
         },
         {
-            photoUrl: 'src/assets/photos/tristagainRev.jpg',
+            photoUrl: 'public/photos/tristagainRev.jpg',
             text: 'ABOUT US'
         },
         {
-            photoUrl: 'src/assets/photos/leeColorNiceTextureLights.jpg',
+            photoUrl: 'public/photos/leeColorNiceTextureLights.jpg',
             text: 'VIDEOS'
         }
     ]

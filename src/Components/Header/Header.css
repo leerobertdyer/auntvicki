@@ -1,5 +1,5 @@
 .headerBackground {
-    background-image: url('../src/assets/photos/fullband2.jpg');
+    background-image: url('../../public/photos/fullband2.jpg');
     background-size: 100vw;
 }
 .mainHeaderDiv {
@@ -45,7 +45,7 @@
 
 .headerBtn {
     color: white;
-    background-image: url('../../assets/photos/cheetah.jpeg');
+    background-image: url('../../public/photos/cheetah.jpeg');
     background-size: cover;
     font-size: 3vw;
     width: 38vw;

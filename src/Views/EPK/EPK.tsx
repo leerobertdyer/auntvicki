@@ -46,19 +46,19 @@ const EPK = () => {
 
     const allVideos: IcurrentVideo[] = [
         {
-            src: "https://www.youtube.com/embed/SrD2nilSt2I",
+            src: "https://www.youtube-nocookie.com/embed/SrD2nilSt2I",
             title: "Aunt Vicki - Vigil (Music Video)"
         },
         {
-            src: 'https://www.youtube.com/embed/RinXf8AsBXE',
+            src: 'https://www.youtube-nocookie.com/embed/RinXf8AsBXE',
             title: 'Crybaby @ the Orange Peel'
         },
         {
-            src: "https://www.youtube.com/embed/Yg_q40mY48c",
+            src: "https://www.youtube-nocookie.com/embed/Yg_q40mY48c",
             title: "Aunt Vicki - Lights Out (Music Video)"
         },
         {
-            src: 'https://www.youtube.com/embed/cGqu6S21sQU',
+            src: 'https://www.youtube-nocookie.com/embed/cGqu6S21sQU',
             title: "AV Knights In Training"
         }
     ]

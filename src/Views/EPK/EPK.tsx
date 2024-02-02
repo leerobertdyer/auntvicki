@@ -15,11 +15,12 @@ interface IcurrentVideo {
 
 interface IcurrentPress {
     title: string,
-    link: string,
     summary: string,
-    photo: string,
+    photo?: string,
+    link?: string,
     audio?: string,
-    credit?: string
+    credit?: string,
+    iframe?: string
 }
 
 const EPK = () => {
@@ -27,20 +28,30 @@ const EPK = () => {
     const allPressElements: IcurrentPress[] = [
         {
             title: "Wax Vinyl Records UK Review",
-            link: 'https://waxvinylrecords.co.uk/aunt-vickis-time-is-on-your-side-a-sonic-journey-of-discovery/',
             summary: "Aunt Vicki’s “Time Is On Your Side” offers a fantastic sonic experience that begins with the lazy, soothing vibes reminiscent of a mid-career Beatles track. The song conjures feelings akin to the Revolver era, with its thoughtful and melodic approach. However, as it unfolds, the track gradually builds in pace and intensity, leading to a grand and powerful finish that takes you by surprise.",
             photo: '/photos/gravity.jpg',
+            link: 'https://waxvinylrecords.co.uk/aunt-vickis-time-is-on-your-side-a-sonic-journey-of-discovery/',
             audio: '/audio/time.mp3',
             credit: 'Geddi Monroe'
         },
 
         {
             title: 'From The Straight Review',
-            link: 'https://fromthestrait.com/articles/the-rundown-october-29-2023/',
             summary: "Different Suits talks about the many life paths you can try out. Erin (the songwriter for this one) has been a sculptor, jewelry maker, clothing designer, life coach, and most recently a musician. So the chorus and bridge talk about trying things on literally, and casting them off if they aren’t working for you.",
             photo: '/photos/epicErinAngel.jpg',
+            link: 'https://fromthestrait.com/articles/the-rundown-october-29-2023/',
             audio: '/audio/different.mp3',
             credit: 'Sam Bennett'
+        },
+        {
+            title: "Loose Fit Radio Interview 103.3FM AVL",
+            summary: "We got the whole band in the studio and I think we only swore once! Talked about Cheap Talk, and the recording process. Ernesto was an awesome host!",
+            iframe: "https://www.youtube-nocookie.com/embed/A5ms22_xzcE"
+        },
+        {
+            title: 'WNC Original Music Podcast',
+            summary: "An interview with Erin and Lee before our second album Love In The Dark came out.",
+            iframe: "https://www.podbean.com/player-v2/?from=embed&i=vbrpx-1152332-pb&square=1&share=1&download=1&fonts=Arial&skin=1&font-color=&rtl=0&logo_link=&btn-skin=7&size=300"
         }
     ]
 
@@ -73,13 +84,25 @@ const EPK = () => {
     const [currentVideo, setCurrentVideo] = useState<IcurrentVideo>(allVideos[videoIndex])
     const [pressIndex, setPressIndex] = useState<number>(0)
     const [currentPress, setCurrentPress] = useState<IcurrentPress>(allPressElements[pressIndex])
-    const [autoPlay, setAutoplay] = useState<boolean>(false)
 
     useEffect(() => {
         setCurrentVideo(allVideos[videoIndex])
         setCurrentPress(allPressElements[pressIndex])
         //eslint-disable-next-line
     }, [videoIndex, pressIndex])
+
+
+    function setAllAudioVolume(volume: number) {
+        const audioElements = document.querySelectorAll('audio');
+        audioElements.forEach((audio) => {
+          audio.volume = volume;
+        });
+      }
+      
+      setAllAudioVolume(0.1);
+
+
+
 
     const arrowHelper = (
         arrowDirection: string,
@@ -103,7 +126,6 @@ const EPK = () => {
 
     const arrowPress = (arrowDirection: string) => {
         arrowHelper(arrowDirection, allPressElements, pressIndex, setPressIndex)
-        setAutoplay(false)
     }
 
     const onPhotoSelection = (photoId: string) => {
@@ -174,18 +196,18 @@ const EPK = () => {
                                         <IoIosArrowForward className="bigControls" onClick={() => arrowPress('RIGHT')} />
                                     </div>
 
-                                    <div className='epkInnerDiv'
-                                        onMouseOver={() => setAutoplay(true)}
-                                    >
+                                    <div className='epkInnerDiv'>
                                         <h1>{currentPress.title} </h1>
                                         <p className='pressSummary'>{currentPress.summary}</p>
-                                        {autoPlay &&
-                                            <audio src={currentPress.audio} hidden autoPlay controls></audio>
-                                        }
+                                         {currentPress.audio &&    <audio src={currentPress.audio} controls style={{margin: '10px'}}></audio> }
+                                             {currentPress.iframe && <iframe src={currentPress.iframe} width="640" height="480" allow="autoplay"></iframe>}
+                                       {currentPress.link && <>
                                         <a href={currentPress.link} target="_blank" className='picAndLink'>
-                                            <img src={currentPress.photo} alt="" className='pressPhoto'></img>
-                                            Read The Full Article!</a>
-                                            <p className='photoCredit' style={{width: '100%', textAlign: 'center', marginTop: '15px'}}><FaCameraRetro/> by <a href="https://www.geddimonroe.com/" target="_blank">{currentPress.credit}</a></p>
+                                             <img src={currentPress.photo} alt="" className='pressPhoto'></img>
+ 
+                                             Read The Full Article!</a>
+                                            <p className='photoCredit' style={{width: '100%', textAlign: 'center', marginTop: '15px'}}><FaCameraRetro/> by <a href="https://www.geddimonroe.com/" target="_blank">{currentPress.credit}</a></p> 
+                                       </>}
                                     </div>
                                 </div>
 

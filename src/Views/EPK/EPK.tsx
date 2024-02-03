@@ -127,7 +127,7 @@ const EPK = () => {
         {
             title: 'From The Straight Review',
             summary: "Different Suits talks about the many life paths you can try out. Erin (the songwriter for this one) has been a sculptor, jewelry maker, clothing designer, life coach, and most recently a musician. So the chorus and bridge talk about trying things on literally, and casting them off if they aren’t working for you.",
-            photo: 'https://drive.google.com/file/d/1-zO7ycN_Dm6pXpe0ugjBvVbjh9oZ5gZL/view?usp=drive_link',
+            photo: '/photos/crowd.jpg',
             link: 'https://fromthestrait.com/articles/the-rundown-october-29-2023/',
             audio: '/audio/different.mp3',
             credit: 'Sam Bennett'

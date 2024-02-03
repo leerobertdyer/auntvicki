@@ -232,13 +232,7 @@ const EPK = () => {
     }
 
     const arrowBio = (arrowDirection: string) => {
-        if (bioIndex === 0) {
-            setBioIndex(1)
-        }
-
-        else if (bioIndex !== 0) {
             arrowHelper(arrowDirection, allBioElements, bioIndex, setBioIndex)
-        }
     }
 
     const onPhotoSelection = (photoId: string) => {

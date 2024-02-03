@@ -23,7 +23,7 @@ function Header() {
                 </div>
                 <div className='headerBtnDiv'>
                     <a href="#merch">
-                        <button className='headerBtn'><span className='cheetahText'>Aunt Vicki's Shop</span></button>
+                        {/* <button className='headerBtn'><span className='cheetahText'>Aunt Vicki's Shop</span></button> */}
                     </a>
                     <a href="https://listen.auntvicki.rocks/spotify/auntvicki"
                         target="_blank">

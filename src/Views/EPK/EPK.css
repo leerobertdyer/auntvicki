@@ -129,6 +129,46 @@ font-size: 45px;
     margin-bottom: 15px;
 }
 
+.bioPhoto {
+    width: 350px;
+    border-radius: 22px;
+    border: solid white 1px;
+}
+
+.bioCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: fit-content;
+}
+.bioPhoto {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.bioTitleAndDesc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bioName {
+    color: gold;
+}
+
+.bandMateTitle {
+    color: lightpink;
+}
+.bandMateBio {
+    text-align: center;
+}
+
+.bioLink {
+    color: orange;
+    margin: 10px;
+}
 
 @media (max-width: 600px) {
     .avepkText {

@@ -40,10 +40,81 @@ interface Iphoto {
     width_o: number;
 }
 
+interface Ibio {
+    name: string,
+    bio: string,
+    title: string,
+    photo: string,
+    links?: {
+        title: string,
+        href: string
+    }[]
+}
 
 const EPK = () => {
 
+    const allBioElements: Ibio[] = [
+        {
+            name: "Tristan Smith",
+            title: "Drummer",
+            bio: "When he isn't holding the groove for old Aunt Vicki, you can find tristan singing, and playing guitar and bass in at least a couple of his own bands:",
+            links: [{
+                href: 'https://www.instagram.com/watches.nc/',
+                title: 'Watches'
+            },
+            {
+                href: 'https://thefloralhygienists.bandcamp.com/album/the-floral-hygienists',
+                title: "Floral Hygienists"
+            }],
+            photo: "/photos/teaDawggy.jpeg"
+        },
+        {
+            name: 'ghost',
+            title: 'haunted',
+            bio: 'our little boy hiding behind the scenes to make sloppy code work. He also brings us luck and joy',
+            photo: '/photos/cheetah.jpeg'
+        },
+
+        {
+            name: "Drew Ball",
+            title: "Bassist",
+            bio: "Party bringer, goat herder, sheep lover, madman Drew Ball is our beloved bassist. But he also has a couple of his own projects:",
+            links: [{
+                href: "https://www.theriverbreaks.com/",
+                title: "The Riverbreaks"
+            },
+            {
+                href: "https://sites.google.com/view/sparklemtn",
+                title: "Sparkle Mountain Family Band"
+            }
+            ],
+            photo: '/photos/dBall.jpeg'
+        },
+        {
+            name: "Erin Campbell",
+            title: "Auntie",
+            bio: "Bringing the left-handed Aunt Vibes to the band. When she isn't singing, she's sewing! See what she's making: ",
+            links: [{
+                href: "https://www.gmother.com/",
+                title: "Grandmother Goods"
+            }],
+            photo: '/photos/erinDawn.jpg'
+        },
+        {
+            name: "Lee Dyer",
+            title: "Uncle Bob",
+            bio: "Lee plays whatever he kind find laying around. But usally just guitar in Aunt Vicki. He does a good bit of home studio work with Tiny Sun: ",
+            links: [{
+                href: "https://www.tinysunstudio.com",
+                title: "Tiny Sun Studio"
+            }
+            ],
+            photo: '/photos/leeBoy.jpg'
+        }
+    ]
+
     const allPressElements: IcurrentPress[] = [
+
         {
             title: "Wax Vinyl Records UK Review",
             summary: "Aunt Vicki’s “Time Is On Your Side” offers a fantastic sonic experience that begins with the lazy, soothing vibes reminiscent of a mid-career Beatles track. The song conjures feelings akin to the Revolver era, with its thoughtful and melodic approach. However, as it unfolds, the track gradually builds in pace and intensity, leading to a grand and powerful finish that takes you by surprise.",
@@ -64,7 +135,7 @@ const EPK = () => {
         {
             title: "Loose Fit Radio Interview 103.3FM AVL",
             summary: "We got the whole band in the studio and I think we only swore once! Talked about Cheap Talk, and the recording process. Ernesto was an awesome host!",
-            iframe: "https://www.youtube-nocookie/embed/A5ms22_xzcE"
+            iframe: "https://www.youtube-nocookie.com/embed/A5ms22_xzcE"
         },
         {
             title: 'WNC Original Music Podcast',
@@ -102,6 +173,9 @@ const EPK = () => {
     const [currentPress, setCurrentPress] = useState<IcurrentPress>(allPressElements[pressIndex])
     const [allPhotos, setAllPhotos] = useState([])
     const [photoIndex, setPhotoIndex] = useState<number>(0)
+    const [bioIndex, setBioIndex] = useState<number>(0)
+    const [currentBio, setCurrentBio] = useState<Ibio>(allBioElements[bioIndex])
+    const [showBioIntro, setShowBioIntro] = useState<boolean>(true)
 
     useEffect(() => {
 
@@ -120,8 +194,9 @@ const EPK = () => {
     useEffect(() => {
         setCurrentVideo(allVideos[videoIndex])
         setCurrentPress(allPressElements[pressIndex])
+        setCurrentBio(allBioElements[bioIndex])
         //eslint-disable-next-line
-    }, [videoIndex, pressIndex])
+    }, [videoIndex, pressIndex, bioIndex])
 
 
     function setAllAudioVolume(volume: number) {
@@ -136,7 +211,7 @@ const EPK = () => {
 
     const arrowHelper = (
         arrowDirection: string,
-        collection: (IcurrentPress[] | IcurrentVideo[]),
+        collection: (IcurrentPress[] | IcurrentVideo[] | Ibio[]),
         index: number,
         setFunc: (value: number) => void
     ) => {
@@ -156,6 +231,20 @@ const EPK = () => {
 
     const arrowPress = (arrowDirection: string) => {
         arrowHelper(arrowDirection, allPressElements, pressIndex, setPressIndex)
+    }
+
+    const arrowBio = (arrowDirection: string) => {
+        if (bioIndex === 0 && !showBioIntro) {
+            setShowBioIntro(true)
+            setBioIndex(1)
+        } else if (bioIndex === 0) {
+            setBioIndex(1)
+        }
+
+        else if (bioIndex !== 0) {
+            setShowBioIntro(false)
+            arrowHelper(arrowDirection, allBioElements, bioIndex, setBioIndex)
+        }
     }
 
     const onPhotoSelection = (photoId: string) => {
@@ -181,22 +270,22 @@ const EPK = () => {
 
 
     const handleSetPhotoIndex = (direction: 'RIGHT' | 'LEFT') => {
-        if (direction === "LEFT" ) {
-            if ( photoIndex > 0){
+        if (direction === "LEFT") {
+            if (photoIndex > 0) {
                 setPhotoIndex(photoIndex - 1)
             }
             else {
-                setPhotoIndex(allPhotos.length -1)
+                setPhotoIndex(allPhotos.length - 1)
             }
-        } 
+        }
         if (direction === "RIGHT") {
-            if (photoIndex < allPhotos.length -2) {
+            if (photoIndex < allPhotos.length - 2) {
                 setPhotoIndex(photoIndex + 1)
             }
             else {
                 setPhotoIndex(0)
             }
-        } 
+        }
     }
 
     return (
@@ -224,9 +313,32 @@ const EPK = () => {
 
                         ? <div className='epkSelectionDiv'>
                             <div className='bigXDiv'>
+                                <IoIosArrowBack className="bigControls" onClick={() => arrowBio('LEFT')} />
                                 <p onClick={() => setShowBio(false)} className='bigX epkX'>X</p>
+                                <IoIosArrowForward className="bigControls" onClick={() => arrowBio('RIGHT')} />
                             </div>
-                            <Bio />
+                            <div className='epkInnerDiv'>
+                                {showBioIntro
+                                    ? <Bio />
+                                    : <>
+                                        <div className='bioCard'>
+                                                <h1 className='bioName'>{currentBio.name}</h1>
+                                            <div className='bioPhoto'>
+                                            <img src={currentBio.photo} alt="" width="100%" height="100%" style={{objectFit: 'cover', objectPosition: 'center'}} />
+                                            </div>
+                                            <div className="bioTitleAndDesc">
+                                                <p className="bandMateTitle">{currentBio.title}</p>
+                                                <p className="bandMateBio">{currentBio.bio}</p>
+                                                {currentBio.links && currentBio.links.map((link) => (
+                                                    <a className="bioLink" href={link.href} target="_blank">{link.title}</a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </>
+                                }
+
+
+                            </div>
                         </div>
 
 
@@ -238,7 +350,6 @@ const EPK = () => {
                                     <IoIosArrowForward className="bigControls" onClick={() => handleSetPhotoIndex('RIGHT')} />
                                 </div>
                                 <div className='epkInnerDiv'>
-                
                                     <Gallery photos={allPhotos} photoIndex={photoIndex} />
                                 </div>
 
@@ -258,7 +369,7 @@ const EPK = () => {
                                         <h1>{currentPress.title} </h1>
                                         <p className='pressSummary'>{currentPress.summary}</p>
                                         {currentPress.audio && <audio src={currentPress.audio} controls style={{ margin: '10px' }}></audio>}
-                                        {currentPress.iframe && <iframe src={currentPress.iframe} width="640" height="480" allow="autoplay"></iframe>}
+                                        {currentPress.iframe && <iframe className="youtubeIframeEPK" src={currentPress.iframe} width="640" height="480" allow="autoplay"></iframe>}
                                         {currentPress.link && <>
                                             <a href={currentPress.link} target="_blank" className='picAndLink'>
                                                 <img src={currentPress.photo} alt="" className='pressPhoto'></img>

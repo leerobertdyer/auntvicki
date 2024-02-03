@@ -43,7 +43,7 @@ interface Iphoto {
 interface Ibio {
     name: string,
     bio: string,
-    title: string,
+    title?: string,
     photo: string,
     links?: {
         title: string,
@@ -54,6 +54,11 @@ interface Ibio {
 const EPK = () => {
 
     const allBioElements: Ibio[] = [
+        {
+            name: "Aunt Vicki",
+            photo: '/photos/kyAv.jpg',
+            bio: `...the musical embodiment of your favorite rebellious relative, Aunt Vicki merges indie, retro rock, and Americana into their signature sound. Led by married songwriters Lee Dyer and Erin Campbell, their two styles give a yin and yang to the overall vibe. Influenced by the rock legends of the '60s and the indie scene of the '90s-00s, the four-piece band delivers catchy tunes with a gritty edge. Drew Ball is on Bass/Stage Mischief, and Tristan Smith adds a charming garage rock sass with his vintage drum kit.`
+        },
         {
             name: "Tristan Smith",
             title: "Drummer",
@@ -67,12 +72,6 @@ const EPK = () => {
                 title: "Floral Hygienists"
             }],
             photo: "/photos/teaDawggy.jpeg"
-        },
-        {
-            name: 'ghost',
-            title: 'haunted',
-            bio: 'our little boy hiding behind the scenes to make sloppy code work. He also brings us luck and joy',
-            photo: '/photos/cheetah.jpeg'
         },
 
         {
@@ -175,7 +174,6 @@ const EPK = () => {
     const [photoIndex, setPhotoIndex] = useState<number>(0)
     const [bioIndex, setBioIndex] = useState<number>(0)
     const [currentBio, setCurrentBio] = useState<Ibio>(allBioElements[bioIndex])
-    const [showBioIntro, setShowBioIntro] = useState<boolean>(true)
 
     useEffect(() => {
 
@@ -234,15 +232,11 @@ const EPK = () => {
     }
 
     const arrowBio = (arrowDirection: string) => {
-        if (bioIndex === 0 && !showBioIntro) {
-            setShowBioIntro(true)
-            setBioIndex(1)
-        } else if (bioIndex === 0) {
+        if (bioIndex === 0) {
             setBioIndex(1)
         }
 
         else if (bioIndex !== 0) {
-            setShowBioIntro(false)
             arrowHelper(arrowDirection, allBioElements, bioIndex, setBioIndex)
         }
     }
@@ -318,7 +312,7 @@ const EPK = () => {
                                 <IoIosArrowForward className="bigControls" onClick={() => arrowBio('RIGHT')} />
                             </div>
                             <div className='epkInnerDiv'>
-                                {showBioIntro
+                                {bioIndex === 0
                                     ? <Bio />
                                     : <>
                                         <div className='bioCard'>

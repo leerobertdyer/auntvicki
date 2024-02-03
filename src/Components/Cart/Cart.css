@@ -1,0 +1,20 @@
+.cartMainDiv {
+    display: flex;
+    width: fit-content;
+    border: white solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+.itemNum {
+    font-size: 20px;
+    color: red;
+    margin-left: 10px;
+    padding: 0;
+}

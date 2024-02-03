@@ -10,7 +10,7 @@ function Nav() {
     <div className='mainNavDiv'>
     <NavLink to="/" className="navLink">Home</NavLink>
     <NavLink to="/epk" className="navLink">EPK</NavLink>
-    <NavLink to="/merch" className="navLink">Merch</NavLink>
+    {/* <NavLink to="/merch" className="navLink">Merch</NavLink> */}
     <a className="navLink" href="mailto:mgmt@auntvicki.rocks"><MdOutlineEmail />Book</a>
     </div>  
     </>

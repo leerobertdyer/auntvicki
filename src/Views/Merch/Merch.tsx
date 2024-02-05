@@ -15,12 +15,12 @@ interface IcartItem {
 }
 
 const allMerchItems: IcartItem[] = [
-    {
-        name: 'Test',
-        quantity: 0,
-        price: .11,
-        photo: '/photos/cheetah.jpeg'
-    },
+    // {
+    //     name: 'Test',
+    //     quantity: 0,
+    //     price: .11,
+    //     photo: '/photos/cheetah.jpeg'
+    // },
     {
         name: "Cheap Talk Vinyl",
         quantity: 0,

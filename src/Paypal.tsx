@@ -59,6 +59,7 @@ const Paypal: React.FC<PaypalProps> = ({ cartData, handlePaymentSuccess, payPalV
 
         onApprove={async (data, actions) => {
           //now payment goes through. But I need to collect information and notify myself
+          console.log("data: ", data)
           const resp = await fetch('https://wabs-server.onrender.com/portfolio/contact', {
             method: "POST",
             headers: { "Content-Type": "Application/json" },
@@ -73,15 +74,15 @@ const Paypal: React.FC<PaypalProps> = ({ cartData, handlePaymentSuccess, payPalV
           try {
             if (actions && actions.order) {
 
-              const captureDetails = await actions.order.capture();
+              // const captureDetails = await actions.order.capture();
 
-              if (captureDetails.status === 'COMPLETED') {
-                console.log('Payment executed successfully');
-                handlePaymentSuccess();
-                console.log(data)
-              } else {
-                console.error('Payment execution failed');
-              }
+              // if (captureDetails.status === 'COMPLETED') {
+              //   console.log('Payment executed successfully');
+              //   handlePaymentSuccess();
+              //   console.log(data)
+              // } else {
+              //   console.error('Payment execution failed');
+              // }
             }
           } catch (error) {
             console.error('Payment execution error:', error);

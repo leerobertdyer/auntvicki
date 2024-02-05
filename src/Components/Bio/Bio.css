@@ -63,15 +63,16 @@
 
 @media (max-width: 400px) {
     .mainBioDiv {
-        width: 99%;
+        width: 100%;
+        padding: 8px;
     }
 
     .bigLines {
-        font-size: 27px;
+        font-size: 22px;
     }
 
     .genres {
-        font-size: 27px;
+        font-size: 22px;
     }
 
     .bioText {

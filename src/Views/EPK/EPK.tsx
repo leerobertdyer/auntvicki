@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaCameraRetro } from "react-icons/fa";
-import Bio from '../../Components/Bio/Bio'
 import { Link } from 'react-router-dom';
 import { getPhotos } from "../../flickr"
 import { Gallery } from '../../Components/Gallery/Gallery';
@@ -54,11 +53,6 @@ interface Ibio {
 const EPK = () => {
 
     const allBioElements: Ibio[] = [
-        {
-            name: "Aunt Vicki",
-            photo: '/photos/kyAv.jpg',
-            bio: `...the musical embodiment of your favorite rebellious relative, Aunt Vicki merges indie, retro rock, and Americana into their signature sound. Led by married songwriters Lee Dyer and Erin Campbell, their two styles give a yin and yang to the overall vibe. Influenced by the rock legends of the '60s and the indie scene of the '90s-00s, the four-piece band delivers catchy tunes with a gritty edge. Drew Ball is on Bass/Stage Mischief, and Tristan Smith adds a charming garage rock sass with his vintage drum kit.`
-        },
         {
             name: "Tristan Smith",
             title: "Drummer",
@@ -306,9 +300,7 @@ const EPK = () => {
                                 <IoIosArrowForward className="bigControls" onClick={() => arrowBio('RIGHT')} />
                             </div>
                             <div className='epkInnerDiv'>
-                                {bioIndex === 0
-                                    ? <Bio />
-                                    : <>
+                                { <>
                                         <div className='bioCard'>
                                                 <h1 className='bioName'>{currentBio.name}</h1>
                                             <div className='bioPhoto'>

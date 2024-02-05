@@ -68,6 +68,15 @@
         -moz-box-shadow: 1px 1px 5px 11px rgb(255, 107, 178);
         box-shadow: 1px 1px 5px 11px rgb(255, 107, 178);
     }
+    .merchItemBtn {
+        font-size: 22px;
+        color: red;
+    }
+    .merchItemBtnDiv {
+        width: 80%;
+        margin: 0 auto;
+        color: red;
+    }
 
     .merchItemQuantity {
         font-size: 22px;

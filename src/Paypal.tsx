@@ -64,7 +64,7 @@ const Paypal: React.FC<PaypalProps> = ({ cartData, handlePaymentSuccess, payPalV
             headers: { "Content-Type": "Application/json" },
             body: JSON.stringify({
               senderEmail: 'leerobertdyer@gmail.com',
-              message: `New AV SALE! ${data}`
+              message: `New AV SALE!`
             })
           });
           if (resp.ok) {

@@ -242,13 +242,13 @@ const EPK = () => {
         setShowPhotos(false)
         setShowPress(false)
 
-        if (photoId === "PRESS/BRAGS") {
+        if (photoId === "PRESS") {
             setShowPress(true)
         }
-        else if (photoId === "ABOUT US") {
+        else if (photoId === "ABOUT") {
             setShowBio(true)
         }
-        else if (photoId === "PHOTOS/ART") {
+        else if (photoId === "PHOTOS") {
             setShowPhotos(true)
         }
         else if (photoId === "VIDEOS") {

@@ -1,7 +1,7 @@
 import { GiShoppingCart } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import "./Cart.css"
-import Paypal from "../../Paypal";
+import Paypal from "../../Paypal.tsx";
 
 interface IcartItem {
     name: string,

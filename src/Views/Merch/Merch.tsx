@@ -175,19 +175,24 @@ function Merch() {
 
     const handleShippingSubmit = async (e: React.MouseEvent) => {
         e.preventDefault();
-        // const resp = await fetch('https://wabs-server.onrender.com/portfolio/contact', {
-        //     method: "POST",
-        //     headers: { "Content-Type": "Application/json" },
-        //     body: JSON.stringify({
-        //         senderEmail: 'leerobertdyer@gmail.com',
-        //         message: `New AV SALE!, `
-        //     })
-        // });
-        // if (resp.ok) {
-        //     console.log('message sent');
-        //     setHaveContactInfo(true)
-        // }
-        setHaveContactInfo(true)
+        const resp = await fetch('https://wabs-server.onrender.com/portfolio/contact', {
+            method: "POST",
+            headers: { "Content-Type": "Application/json" },
+            body: JSON.stringify({
+                senderEmail: 'leerobertdyer@gmail.com',
+                message: `New AV SALE!, DETAILS: {
+                    name: ${name},
+                    email: ${email},
+                    address: ${street} ${city} ${zip},
+                    notes: ${notes}
+                }`
+            })
+        });
+        if (resp.ok) {
+            console.log('message sent');
+            setHaveContactInfo(true)
+        }
+
 
     }
 
@@ -204,22 +209,28 @@ function Merch() {
                             <h1 className='contactDetailsTitle'>Shipping Information</h1>
 
                             <label className='shippingLabel' htmlFor="name">Name
-                                <input name="name" className='shippingInput' type="text" placeholder='Uncle Viktor'></input>
+                                <input name="name" className='shippingInput' type="text" placeholder='Uncle Viktor'
+                                onChange={(e) => setName(e.target.value)}></input>
                             </label>
                             <label className='shippingLabel' htmlFor="email">Email
-                                <input className='shippingInput' type="email" name='email' placeholder='MGMT@auntvicki.rocks' required></input>
+                                <input className='shippingInput' type="email" name='email' placeholder='MGMT@auntvicki.rocks' required
+                                onChange={(e) => setEmail(e.target.value)}></input>
                             </label>
                             <label className='shippingLabel' htmlFor="street">Street Address*
-                                <input className='shippingInput' type="add" name='street' placeholder='69 chicken Alley' required></input>
+                                <input className='shippingInput' type="add" name='street' placeholder='69 chicken Alley' required
+                                onChange={(e) => setStreet(e.target.value)}></input>
                             </label>
                             <label className='shippingLabel' htmlFor="city">City*
-                                <input className='shippingInput' type="add" name='city' placeholder='Asheville' required></input>
+                                <input className='shippingInput' type="add" name='city' placeholder='Asheville' required
+                                onChange={(e) => setCity(e.target.value)}></input>
                             </label>
                             <label className='shippingLabel' htmlFor="zip">Zip Code*
-                                <input className='shippingInput' type="add" name='zip' placeholder='28805' required></input>
+                                <input className='shippingInput' type="add" name='zip' placeholder='28805' required
+                                onChange={(e) => setZip(e.target.value)}></input>
                             </label>
-                                <textarea className='shippingTextArea' name='notes' placeholder='Any notes for dear old aunt V?' required></textarea>
-                                <button onClick={(e) => handleShippingSubmit(e)}>Submit</button>
+                                <textarea className='shippingTextArea' name='notes' placeholder='Any notes for dear old aunt V?'
+                                onChange={(e) => setNotes(e.target.value)}></textarea>
+                                <button className="shippingSubmitBtn"onClick={(e) => handleShippingSubmit(e)}>Submit</button>
                         </form>
                     </div>
 

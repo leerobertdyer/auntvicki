@@ -57,9 +57,23 @@ const Paypal: React.FC<PaypalProps> = ({ cartData, handlePaymentSuccess, payPalV
 
               
               
-              onApprove={ async(data) => {
-                handlePaymentSuccess();
-                console.log(data)
+              onApprove={ async(data, actions) => {
+
+                try {
+                  if (actions && actions.order) {
+                    const captureDetails = await actions.order.capture();
+              
+                    if (captureDetails.status === 'COMPLETED') {
+                      console.log('Payment executed successfully');
+                      handlePaymentSuccess();
+                      console.log(data)
+                    } else {
+                      console.error('Payment execution failed');
+                    }
+                  }
+                } catch (error) {
+                  console.error('Payment execution error:', error);
+                }
               }}
 
               onError={(err) => {

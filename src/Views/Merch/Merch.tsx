@@ -104,7 +104,7 @@ const allMerchItems: IcartItem[] = [
 function Merch() {
     const [cart, setCart] = useState<IcartItem[]>(allMerchItems);
     const [quantity, setQuantity] = useState<number>(cart.reduce((total, item) => total + item.quantity, 0));
-    const [paymentSuccess, setPaymentSuccess] = useState<boolean>(true);
+    const [paymentSuccess, setPaymentSuccess] = useState<boolean>(false);
     const [width, height] = useWindowSize();
     const [haveContactInfo, setHaveContactInfo] = useState<boolean>(false);
     const [name, setName] = useState<string>('')

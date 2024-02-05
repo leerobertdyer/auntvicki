@@ -18,7 +18,7 @@ const allMerchItems: IcartItem[] = [
     {
         name: 'Test',
         quantity: 0,
-        price: 1.11,
+        price: .11,
         photo: '/photos/cheetah.jpeg'
     },
     {

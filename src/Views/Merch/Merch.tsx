@@ -102,10 +102,17 @@ const allMerchItems: IcartItem[] = [
 ]
 
 function Merch() {
-    const [cart, setCart] = useState<IcartItem[]>(allMerchItems)
-    const [quantity, setQuantity] = useState<number>(cart.reduce((total, item) => total + item.quantity, 0))
-    const [paymentSuccess, setPaymentSuccess] = useState<boolean>(false)
-    const [width, height] = useWindowSize()
+    const [cart, setCart] = useState<IcartItem[]>(allMerchItems);
+    const [quantity, setQuantity] = useState<number>(cart.reduce((total, item) => total + item.quantity, 0));
+    const [paymentSuccess, setPaymentSuccess] = useState<boolean>(true);
+    const [width, height] = useWindowSize();
+    const [haveContactInfo, setHaveContactInfo] = useState<boolean>(false);
+    const [name, setName] = useState<string>('')
+    const [email, setEmail] = useState<string>('');
+    const [street, setStreet] = useState<string>('')
+    const [city, setCity] = useState<string>('')
+    const [zip, setZip] = useState<string>('');
+    const [notes, setNotes] = useState<string>('');
 
 
     useEffect(() => {
@@ -166,17 +173,63 @@ function Merch() {
         setPaymentSuccess(true);
     };
 
+    const handleShippingSubmit = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        // const resp = await fetch('https://wabs-server.onrender.com/portfolio/contact', {
+        //     method: "POST",
+        //     headers: { "Content-Type": "Application/json" },
+        //     body: JSON.stringify({
+        //         senderEmail: 'leerobertdyer@gmail.com',
+        //         message: `New AV SALE!, `
+        //     })
+        // });
+        // if (resp.ok) {
+        //     console.log('message sent');
+        //     setHaveContactInfo(true)
+        // }
+        setHaveContactInfo(true)
+
+    }
+
     return (
         <>
-        <Nav />
-            {paymentSuccess ?
-                <div className='mainPaySuccessDiv' onClick={() => setPaymentSuccess(false)}>
- <Confetti width={width} height={height}/>
- <h1>Thank you!</h1>
- <h2>Your payment has been received.</h2>
- <h3>And your merch will be in the mail shortly!</h3>
- <h4 className='bigX hover' style={{color: 'red'}}>X</h4>
-                </div>
+            <Nav />
+
+            {paymentSuccess
+                ? !haveContactInfo
+
+                    ? <div className='mainShippingDiv'>
+                        <p className='oneLastStep'>🎉 One Last Step!</p>
+                        <form className='shippingForm'>
+                            <h1 className='contactDetailsTitle'>Shipping Information</h1>
+
+                            <label className='shippingLabel' htmlFor="name">Name
+                                <input name="name" className='shippingInput' type="text" placeholder='Uncle Viktor'></input>
+                            </label>
+                            <label className='shippingLabel' htmlFor="email">Email
+                                <input className='shippingInput' type="email" name='email' placeholder='MGMT@auntvicki.rocks' required></input>
+                            </label>
+                            <label className='shippingLabel' htmlFor="street">Street Address*
+                                <input className='shippingInput' type="add" name='street' placeholder='69 chicken Alley' required></input>
+                            </label>
+                            <label className='shippingLabel' htmlFor="city">City*
+                                <input className='shippingInput' type="add" name='city' placeholder='Asheville' required></input>
+                            </label>
+                            <label className='shippingLabel' htmlFor="zip">Zip Code*
+                                <input className='shippingInput' type="add" name='zip' placeholder='28805' required></input>
+                            </label>
+                                <textarea className='shippingTextArea' name='notes' placeholder='Any notes for dear old aunt V?' required></textarea>
+                                <button onClick={(e) => handleShippingSubmit(e)}>Submit</button>
+                        </form>
+                    </div>
+
+                    : <div className='mainPaySuccessDiv' onClick={() => setPaymentSuccess(false)}>
+                        <Confetti width={width} height={height} />
+                        <h1>Thank you!</h1>
+                        <h2>Your payment has been received.</h2>
+                        <h3>And your merch will be in the mail shortly!</h3>
+                        <h4 className='bigX hover' style={{ color: 'red' }}>X</h4>
+                    </div>
                 : <div className='mainMerchDiv'>
                     <div className='cartHeader'>
                         <div className='hover'>

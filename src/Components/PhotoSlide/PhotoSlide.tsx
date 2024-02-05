@@ -14,15 +14,15 @@ export const PhotoSlide: React.FC<IPhotoSlide> = ({ onPhotoSelection }) => {
     const slides:Islides[] = [
         {
             photoUrl: '/photos/erinSteppin.jpg',
-            text: 'PRESS/BRAGS'
+            text: 'PRESS'
         },
         {
             photoUrl: '/photos/drewLights.jpg',
-            text: 'PHOTOS/ART'
+            text: 'PHOTOS'
         },
         {
             photoUrl: '/photos/tristagainRev.jpg',
-            text: 'ABOUT US'
+            text: 'ABOUT'
         },
         {
             photoUrl: '/photos/leeColorNiceTextureLights.jpg',

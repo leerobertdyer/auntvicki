@@ -103,12 +103,12 @@
     }
 
     .headerBtn {
-        min-width: 110px;
-        min-height: 55px;
+        width: 150px;
+        height: 40px;
     }
 
     .cheetahText {
-        font-size: 2vw;
+        font-size: 18px;
         padding: 15px 35px;
     }
 

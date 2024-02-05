@@ -17,11 +17,12 @@
     margin: 0 auto;
     background-color: rgba(0, 0, 0, .9);
     color: antiquewhite;
-    font-size: 2vw;
+    font-size: 33px;
+    max-width: 900px;
 }
 
 .bioTitle {
-    font-size: 3vw;
+    font-size: 40px;
     text-align: center;
 
 }
@@ -34,12 +35,12 @@
 
 .bigLines {
     font-family: 'Libre Baskerville', serif;
-    font-size: 3vw;
+    font-size: 40px;
 }
 
 .genres {
     font-family: 'Libre Baskerville', serif;
-    font-size: 3vw;
+    font-size: 40px;
     color: orange;
 }
 
@@ -54,4 +55,22 @@
 
 .catchy {
  color: lightpink;
+}
+
+@media (max-width: 400px) {
+    .mainBioDiv {
+        width: 99%;
+    }
+
+    .bigLines {
+        font-size: 30px;
+    }
+
+    .genres {
+        font-size: 30px;
+    }
+
+    .bioText {
+        font-size: 22px;
+    }
 }

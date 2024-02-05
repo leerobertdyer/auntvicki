@@ -25,7 +25,7 @@ function Header() {
                     <a href="#merch">
                         {/* <button className='headerBtn'><span className='cheetahText'>Aunt Vicki's Shop</span></button> */}
                     </a>
-                    <a href="https://listen.auntvicki.rocks/spotify/auntvicki"
+                    <a href="https://spotify.auntvicki.rocks/spotify/auntvicki"
                         target="_blank">
                         <button className='headerBtn'><span className='cheetahText'>Follow Us On Spotify!</span></button></a>
                 </div>

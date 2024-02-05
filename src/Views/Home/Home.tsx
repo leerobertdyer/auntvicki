@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import Event from "../../Components/Event/Event"
 import Footer from "../../Components/Footer/Footer"
 
+
 interface Ievent{
     summary: string,
     id: string,
@@ -52,6 +53,7 @@ const Home = () => {
         }
         fetchEvents();
     }, [])
+
 
     return (
         <>

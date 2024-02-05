@@ -9,6 +9,7 @@
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    background-color: rgb(24, 24, 24);
 
 }
 
@@ -17,4 +18,80 @@
     color: red;
     margin-left: 10px;
     padding: 0;
+}
+
+.popUp {
+    background-color: rgba(254, 24, 24, .8);
+}
+
+.cart {
+    display: flex;
+    justify-content: space-between;
+    float: right;
+}
+
+.openedCart {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+.eachProductDiv {
+    border: white solid 1px;
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.productName {
+    background-color: white;
+    color: black;
+    font-size: 50px;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.cartBtnDiv {
+    display: flex;
+    gap: 5px;
+    padding-bottom: 10px;
+}
+
+.red {
+    background-color: gray;
+}
+.red:hover {
+    background-color: red;
+}
+.green {
+    background-color: olivedrab;
+}
+
+.blue {
+    background-color: lightblue;
+}
+
+.noItems {
+    font-size: 20px;
+}
+
+.cartAndPaypal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+@media (max-width: 400px) {
+    .cartAndPaypal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

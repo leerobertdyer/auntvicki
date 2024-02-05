@@ -1,16 +1,67 @@
 .mainMerchDiv {
     background-color: rgb(20, 20, 20);
     color: antiquewhite;
-    width: 100%;
-    height: 100vh;
     width: 100vw;
+    height: fit-content;
     padding: 20px;
     font-size: 3vw;
-    overflow: hidden;
+    margin: 0;
 }
 
 .cartHeader {
     position: fixed;
-    top: 50px;
+    top: 5px;
     right: 80px;
+}
+.cartOpen {
+    position: fixed;
+    top: 0;
+    right: 80px;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: rgba(24, 24, 24, .9);
+    display: flex;
+    justify-content: center;
+}
+
+.allMerchItemsDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.mainPaySuccessDiv {
+    background-color: rgb(24, 24, 24);
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding: 160px;
+}
+
+.kiss {
+    width: 100px;
+}
+
+@media (max-width: 400px) {
+    .cartHeader {
+        position: sticky; 
+        width: 100%;
+        margin: 0 auto;   
+        display: flex;
+        justify-content: center;    
+        margin-bottom: 35px;
+    }
+.allMerchItemsDiv {
+    gap: 20px;
+}
+    .kiss {
+        width: 45px;
+    }
+
 }

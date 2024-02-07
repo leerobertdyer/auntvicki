@@ -79,6 +79,8 @@
 
 .cheetahText {
     width: 70%;
+    font-size: 30px;
+    max-height: 130px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -93,7 +95,6 @@
     color: white;
     width: 95%;
     text-align: right;
-
     padding: 0;
 }
 

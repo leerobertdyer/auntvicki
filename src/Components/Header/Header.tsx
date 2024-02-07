@@ -2,6 +2,7 @@ import Nav from '../Nav/Nav'
 import './Header.css'
 import { SocialIcon } from 'react-social-icons'
 import { FaCameraRetro } from "react-icons/fa";
+import { FaSpotify } from "react-icons/fa";
 
 const facebookIcon = <SocialIcon className="icon" url="https://www.facebook.com/AuntVickiBand" target="_blank"/>
 const instagramIcon = <SocialIcon className="icon" url="https://www.instagram.com/_aunt_vicki" target="_blank"/>
@@ -27,7 +28,7 @@ function Header() {
                     </a>
                     <a href="https://spotify.auntvicki.rocks/spotify/auntvicki"
                         target="_blank">
-                        <button className='headerBtn'><span className='cheetahText'>Follow Us On Spotify!</span></button></a>
+                        <button className='headerBtn'><div className='cheetahText'><FaSpotify size={50}/> Follow Us</div></button></a>
                 </div>
         <p className='photoCredit' style={{position: 'absolute'}}><FaCameraRetro/> by <a href="https://www.geddimonroe.com/" target="_blank">Geddi Monroe</a></p>
             </div>

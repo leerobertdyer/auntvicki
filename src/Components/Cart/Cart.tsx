@@ -49,6 +49,9 @@ const Cart: React.FC<CartProps> = ({ cartItems, handleQuantity, quantity, handle
                     <div className="popup">
                         <div className="cartAndPaypal">
                             <div className="cart">
+                                <p className="openCloseCart" onClick={() => setShowCart(false)}>
+                                    Close Cart
+                                    </p>
                                 <GiShoppingCart size={50} onClick={() => setShowCart(!showCart)} />
                                 <p className="itemNum">{quantity}</p>
                                 <p className="itemNum cost">${totalCost}</p>
@@ -80,6 +83,9 @@ const Cart: React.FC<CartProps> = ({ cartItems, handleQuantity, quantity, handle
 
                 : <div className="cartAndPaypal">
                     <div className="cart">
+                    <p className="openCloseCart" onClick={() => setShowCart(true)}>
+                                    Open Cart
+                                    </p>
                         <GiShoppingCart size={50} onClick={() => setShowCart(!showCart)} />
                         <p className="itemNum">{quantity}</p>
                         <p className="itemNum cost">${totalCost}</p>

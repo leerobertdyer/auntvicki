@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./Gallery.css"
 
 interface IPhoto {
-  link: string;
+  smallLink: string;
+  bigLink: string;
 }
 
 interface GalleryProps {
@@ -14,6 +15,7 @@ export const Gallery = ({ photos, photoIndex }: GalleryProps) => {
   const [showPopup, setShowPopup] = useState<boolean>(false)
   const [bigImage, setBigImage] = useState<string>('')
   const [grid, setGrid] = useState<boolean>(true)
+  console.log('Photos inside gallery: ', photos)
 
   const handleDownloadClick = (link: string) => {
     setBigImage(link)
@@ -51,12 +53,8 @@ export const Gallery = ({ photos, photoIndex }: GalleryProps) => {
               <div key={key} className="outerGalleryDiv">
 
                 {
-                  key !== 1
-                    ? <div className="galleryPhotoDiv smallPhoto">
-                      <img onClick={() => handleDownloadClick(photo.link)} src={photo.link} loading="lazy" width="100%" />
-                    </div>
-                    : <div className="galleryPhotoDiv largePhoto">
-                      <img onClick={() => handleDownloadClick(photo.link)} src={photo.link} loading="lazy" width="120%" />
+                     <div className="slidePhotoDiv">
+                      <img onClick={() => handleDownloadClick(photo.bigLink)} src={photo.bigLink} loading="lazy" className="slidePhoto" />
                     </div>
                 }
 
@@ -68,7 +66,7 @@ export const Gallery = ({ photos, photoIndex }: GalleryProps) => {
           <div className="mainGridPhotoDiv">
   {photos.slice(photoIndex, photoIndex + 16).map((photo) => (
     <div className="gridPhotoDiv">
-      <img onClick={() => handleDownloadClick(photo.link)} src={photo.link} alt="" width="100%" height="100%" style={{objectFit: 'cover', objectPosition: 'center'}}/>
+      <img onClick={() => handleDownloadClick(photo.bigLink)} src={photo.smallLink} alt="" width="100%" height="100%" style={{objectFit: 'cover', objectPosition: 'center'}}/>
     </div>
   ))}
   </div>

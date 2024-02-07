@@ -35,7 +35,8 @@ interface Iphoto {
     secret: string;
     server: string;
     title: string;
-    url_o: string;
+    url_l: string;
+    url_s: string;
     width_o: number;
 }
 
@@ -175,7 +176,8 @@ const EPK = () => {
             const photos = await getPhotos();
             const nextPhotos = photos.map((photo: Iphoto) => (
                 {
-                    link: photo.url_o
+                    smallLink: photo.url_s,
+                    bigLink: photo.url_l
                 }
             ))
             setAllPhotos(nextPhotos)

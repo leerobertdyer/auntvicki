@@ -1,7 +1,6 @@
 * {
     font-family: 'Macondo', cursive;
     box-sizing: border-box;
-    transition: .5s;
 }
 body {
     overflow-x: hidden;

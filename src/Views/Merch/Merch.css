@@ -119,12 +119,11 @@
 
 @media (max-width: 400px) {
     .cartHeader {
-        position: sticky; 
-        width: 100%;
-        margin: 0 auto;   
         display: flex;
         justify-content: center;    
-        margin-bottom: 35px;
+        align-items: flex-end;
+        right: 0;
+        bottom: 0;
     }
 .allMerchItemsDiv {
     gap: 20px;

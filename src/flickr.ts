@@ -25,7 +25,7 @@ export async function getPhotos() {
         user_id,
         per_page: '100',
         page: '1',
-        extras: 'url_o', 
+        extras: 'url_s, url_l', 
         format: 'json',
         nojsoncallback: '1', 
       });
@@ -38,6 +38,7 @@ try {
     
     const photos = data.photos.photo
     shuffleArray(photos)
+    console.log('HERE: ', photos)
     return photos
 } catch (error) {
     console.error(`error getting photos: ${error}`)

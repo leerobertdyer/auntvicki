@@ -63,15 +63,15 @@ const Cart: React.FC<CartProps> = ({ cartItems, handleQuantity, quantity, handle
                                 <h1 className="noItems">You have no items selected yet! :( </h1>}
 
                             { allCartItems.length > 0 && <>
-                                <h1>Your Selections:</h1>
+                                <h1 className="yourSelections">Your Selections:</h1>
                             {allCartItems.map((product, key) => (
                                 <div className="eachProductDiv" key={key}>
                                     <p className="productName">{product.name}</p>
                                     <p className="productQuantity">Quantity: {product.quantity}</p>
                                     <div className="cartBtnDiv">
-                                        <button className="merchItemBtn blue" onClick={() => handleQuantity("-", product)}>-</button>
-                                        <button className="merchItemBtn green" onClick={() => handleQuantity("+", product)}>+</button>
-                                        <button className="merchItemBtn red" onClick={() => handleQuantity("REMOVE", product)}>Remove</button>
+                                        <button className="merchItemBtnCart blue" onClick={() => handleQuantity("-", product)}>-</button>
+                                        <button className="merchItemBtnCart green" onClick={() => handleQuantity("+", product)}>+</button>
+                                        <button className="merchItemBtnCart red" onClick={() => handleQuantity("REMOVE", product)}>Remove</button>
                                     </div>
                                 </div>
                             ))}

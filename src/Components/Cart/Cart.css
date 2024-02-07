@@ -10,7 +10,13 @@
     -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     background-color: rgb(24, 24, 24);
+}
 
+.yourSelections {
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 .itemNum {
@@ -22,6 +28,7 @@
 
 .popUp {
     background-color: rgba(254, 24, 24, .8);
+    overflow: scroll;
 }
 
 .cart {
@@ -34,14 +41,15 @@
 .openedCart {
     display: flex;
     flex-direction: column;
-    padding: 20px;
     gap: 20px;
+    width: 80vw;
+    height: 60vh;
+    overflow: scroll;
 }
 
 .eachProductDiv {
     border: white solid 1px;
     border-radius: 12px;
-    overflow: hidden;
     font-size: 20px;
     display: flex;
     flex-direction: column;
@@ -50,6 +58,8 @@
 
 .productName {
     background-color: white;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
     color: black;
     font-size: 50px;
     margin: 0;
@@ -92,6 +102,21 @@
     font-size: 17px;
 }
 
+
+.merchItemBtnCart {
+    height: 35px;
+    width: fit-content;
+    font-size: 30px;
+    border-radius: 10px;
+    border: none;
+}
+
+.merchItemBtnCart:hover {
+    cursor: pointer;
+}
+
+
+
 @media (max-width: 400px) {
     .cartAndPaypal {
         display: flex;
@@ -101,4 +126,12 @@
     .openCloseCart {
         font-size: 12px;
     }
+    .cartMainDiv {
+        height: fit-content;
+    }
+    .openedCart {
+        height: 300px;
+    }
+
+
 }

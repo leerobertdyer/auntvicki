@@ -10,19 +10,8 @@
 
 .cartHeader {
     position: fixed;
-    top: 5px;
     right: 80px;
-}
-.cartOpen {
-    position: fixed;
-    top: 0;
-    right: 80px;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    background-color: rgba(24, 24, 24, .9);
-    display: flex;
-    justify-content: center;
+    height: fit-content;
 }
 
 .allMerchItemsDiv {
@@ -116,14 +105,21 @@
     border: solid white 1px;
 }
 
+.cartIsOpen {
+    height: 100vh;
+    overflow: hidden;
+}
 
+@media (min-width: 401px) {
+    .cartHeader {
+    top: 5px;
+    }
+}
 @media (max-width: 400px) {
     .cartHeader {
-        display: flex;
-        justify-content: center;    
-        align-items: flex-end;
-        right: 0;
+        position: fixed;
         bottom: 0;
+        right: 0;
     }
 .allMerchItemsDiv {
     gap: 20px;

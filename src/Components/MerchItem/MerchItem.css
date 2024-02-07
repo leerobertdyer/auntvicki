@@ -21,10 +21,13 @@
     border-radius: 10px;
     border: none;
 }
-
 .merchItemBtn:hover {
     cursor: pointer;
+    background-color: red;
+    color: black;
 }
+
+
 
 
 .merchImageDiv {
@@ -53,6 +56,7 @@
 }
 
 @media (max-width: 400px) {
+
     .mainMerchItemDiv {
         flex-direction: column-reverse;
         border: solid white 1px;
@@ -69,17 +73,24 @@
         box-shadow: 1px 1px 5px 11px rgb(255, 107, 178);
     }
     .merchItemBtn {
-        font-size: 22px;
+        width: 150px;
+        height: 35px;
+        margin-bottom: 35px;
+        font-size: 16px;
         color: red;
     }
+
     .merchItemBtnDiv {
         width: 80%;
         margin: 0 auto;
         color: red;
     }
 
-    .merchItemQuantity {
+    .merchItemName {
         font-size: 22px;
     }
 
+    .merchItemQuantity {
+        font-size: 22px;
+    }
 }

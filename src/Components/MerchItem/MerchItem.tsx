@@ -9,10 +9,10 @@ interface IcartItem {
 
 interface MerchItemProps {
     product: IcartItem,
-    handleQuantity: (type: string, item: IcartItem) => void,
+    addToCart: (item: IcartItem) => void,
 }
 
-const MerchItem: React.FC<MerchItemProps> = ({ product, handleQuantity }) => {
+const MerchItem: React.FC<MerchItemProps> = ({ product, addToCart }) => {
     return (<>
         <div className="mainMerchItemDiv">
             <div className='merchImageDiv'>
@@ -21,10 +21,7 @@ const MerchItem: React.FC<MerchItemProps> = ({ product, handleQuantity }) => {
             <div className='titleAndBtns'>
             <h1 className='merchItemName'>{product.name}</h1>
             <div className="merchItemBtnDiv">
-                <p className='merchItemQuantity'>{product.quantity}</p>
-                <button className="merchItemBtn blue" onClick={() => handleQuantity("-", product)}>-</button>
-                <button className="merchItemBtn green" onClick={() => handleQuantity("+", product)}>+</button>
-                <button className="merchItemBtn red" onClick={() => handleQuantity("REMOVE", product)}>Remove</button>
+                <button className="merchItemBtn" onClick={() => addToCart(product)} onTouchStart={() => addToCart(product)} >Add To Cart</button>
             </div>
             </div>
         </div>

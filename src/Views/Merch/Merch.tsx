@@ -113,6 +113,7 @@ function Merch() {
     const [city, setCity] = useState<string>('')
     const [zip, setZip] = useState<string>('');
     const [notes, setNotes] = useState<string>('');
+    const [cartOpen, setCartOpen] = useState<boolean>(false)
 
 
     useEffect(() => {
@@ -123,6 +124,13 @@ function Merch() {
         const newCart = [...cart]
         const index = newCart.findIndex((i) => i.name === item.name)
         newCart[index].quantity = 0
+        setCart(newCart)
+    }
+
+    const addToCart = (item: IcartItem) => {
+        const newCart = [...cart]
+        const index = newCart.findIndex((i) => i.name === item.name)
+        newCart[index].quantity += 1
         setCart(newCart)
     }
 
@@ -198,7 +206,7 @@ function Merch() {
 
     return (
         <>
-            <Nav />
+  { !cartOpen && <Nav />}
 
             {paymentSuccess
                 ? !haveContactInfo
@@ -242,15 +250,13 @@ function Merch() {
                         <h4 className='bigX hover' style={{ color: 'red' }}>X</h4>
                     </div>
                 : <div className='mainMerchDiv'>
-                    <div className='cartHeader'>
-                        <div className='hover'>
+                    <div className='cartHeader' onClick={() => setCartOpen(!cartOpen)}>
                             <Cart cartItems={cart} handleQuantity={handleQuantity} quantity={quantity} handlePaymentSuccess={handlePaymentSuccess} />
-                        </div>
                     </div>
-                    <div className="allMerchItemsDiv">
+                    <div className={cartOpen ? 'cartIsOpen' : "allMerchItemsDiv"}>
                         <h1><img src='/photos/kiss.png' alt='' className='kiss'></img> Aunt Vicki Merch <img src='/photos/kiss.png' alt='' className='kiss'></img></h1>
                         {cart.map((item, key) => (
-                            <MerchItem product={item} key={key} handleQuantity={handleQuantity} />
+                            <MerchItem product={item} key={key} addToCart={addToCart} />
                         ))}
                     </div>
                 </div>

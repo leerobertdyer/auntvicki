@@ -57,7 +57,7 @@
     max-height: 135px;
     min-width: 320px;
     min-height: 100px;
-    border: solid goldenrod 3px;
+    border: solid lightpink 3px;
     border-radius: 22px;
     display: flex;
     justify-content: center;
@@ -67,18 +67,18 @@
     text-decoration: none;
 }
 .headerBtn:hover {
-    border: lightpink solid 3px;
+    border: goldenrod solid 3px;
     cursor: pointer;
 }
 
 .headerBtn:hover>* {
     background-color: rgba(24, 24, 24, .8);
-    color: lightpink
+    color: olivedrab
 }
 
 
 .cheetahText {
-    width: 70%;
+    width: 90%;
     font-size: 30px;
     max-height: 130px;
     display: flex;
@@ -86,7 +86,7 @@
     justify-content: space-around;
     padding: 20px;
     gap: 5px;
-    color: olivedrab;
+    color: lightpink;
     border-radius: 20px;
     background-color: rgba(24, 24, 24, .8);
 }

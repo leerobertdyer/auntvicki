@@ -23,7 +23,7 @@ export async function getPhotos() {
         method: 'flickr.photos.search',
         api_key: API_KEY,
         user_id,
-        tags: 'testy',
+        tags: 'auntvicki',
         per_page: '100',
         page: '1',
         extras: 'url_s, url_l', 

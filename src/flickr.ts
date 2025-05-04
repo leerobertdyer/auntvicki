@@ -9,7 +9,7 @@ const apiUrl = 'https://api.flickr.com/services/rest/';
 
 
 
-export async function getPhotos() {
+export async function getPhotos(tags: string) {
 
     function shuffleArray<T>(array: T[]): T[] {
         for (let i = array.length - 1; i > 0; i--) {
@@ -23,7 +23,7 @@ export async function getPhotos() {
         method: 'flickr.photos.search',
         api_key: API_KEY,
         user_id,
-        tags: 'auntvicki',
+        tags,
         per_page: '100',
         page: '1',
         extras: 'url_s, url_l', 

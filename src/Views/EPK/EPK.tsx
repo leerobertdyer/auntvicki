@@ -173,7 +173,7 @@ const EPK = () => {
     useEffect(() => {
 
         const fetchPhotos = async () => {
-            const photos = await getPhotos();
+            const photos = await getPhotos("auntvicki");
             const nextPhotos = photos.map((photo: Iphoto) => (
                 {
                     smallLink: photo.url_s,

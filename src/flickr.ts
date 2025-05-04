@@ -39,7 +39,7 @@ try {
     
     const photos = data.photos.photo
     shuffleArray(photos)
-    console.log('HERE: ', photos)
+    // console.log('PHOTOS ARRAY FLICKR.ts: ', photos)
     return photos
 } catch (error) {
     console.error(`error getting photos: ${error}`)

@@ -1,268 +1,182 @@
-import './Merch.css'
-import Cart from '../../Components/Cart/Cart'
-import { useEffect, useState } from 'react'
-import MerchItem from '../../Components/MerchItem/MerchItem'
-import Confetti from 'react-confetti'
-import { useWindowSize } from '@react-hook/window-size'
-import Nav from '../../Components/Nav/Nav'
+import "./Merch.css";
+import Cart, { ShippingInfo } from "../../Components/Cart/Cart";
+import { useEffect, useState } from "react";
+import MerchItem from "../../Components/MerchItem/MerchItem";
+import Confetti from "react-confetti";
+import { useWindowSize } from "@react-hook/window-size";
+import Nav from "../../Components/Nav/Nav";
+import { SERVER_URL } from "../../constants";
+import { allMerchItems } from "./items";
+import { IcartItem } from "../../types";
 
-
-interface IcartItem {
-    name: string,
-    quantity: number,
-    price: number,
-    photo: string
-}
-
-const allMerchItems: IcartItem[] = [
-    // {
-    //     name: 'Test',
-    //     quantity: 0,
-    //     price: .11,
-    //     photo: '/photos/cheetah.jpeg'
-    // },
-    {
-        name: "Cheap Talk Vinyl",
-        quantity: 0,
-        price: 25,
-        photo: '/photos/albumArt3.jpg'
-    },
-    {
-        name: "Cheap Talk CD",
-        quantity: 0,
-        price: 15,
-        photo: '/photos/albumArt3cd.jpg'
-    },
-    {
-        name: "Love In The Dark CD",
-        quantity: 0,
-        price: 15,
-        photo: '/photos/albumArt2.jpg'
-    },
-    // {
-    //     name: "Self-Titled CD",
-    //     quantity: 0,
-    //     price: 15,
-    //     photo: '/photos/albumArt1.jpg'
-    // },
-    {
-        name: "Green Eyes Shirt XL",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/greenShirt.png'
-    },
-    {
-        name: "Gold Eyes Shirt XL",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/goldShirt.png'
-    },
-    {
-        name: "Pink Eyes Shirt XL",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/pinkShirt.png'
-    },
-    {
-        name: "Green Eyes Shirt L",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/greenShirt.png'
-    },
-    {
-        name: "Gold Eyes Shirt L",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/goldShirt.png'
-    },
-    {
-        name: "Pink Eyes Shirt L",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/pinkShirt.png'
-    },
-    {
-        name: "Green Eyes Shirt M",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/greenShirt.png'
-    },
-    {
-        name: "Gold Eyes Shirt M",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/goldShirt.png'
-    },
-    {
-        name: "Pink Eyes Shirt M",
-        quantity: 0,
-        price: 20,
-        photo: '/photos/pinkShirt.png'
-    }
-]
+// Helper to generate unique key for cart items (handles variants)
+const getCartItemKey = (item: IcartItem): string => {
+  let key = item.name;
+  if (item.selectedSize) key += `-${item.selectedSize}`;
+  if (item.selectedColor) key += `-${item.selectedColor}`;
+  return key;
+};
 
 function Merch() {
-    const [cart, setCart] = useState<IcartItem[]>(allMerchItems);
-    const [quantity, setQuantity] = useState<number>(cart.reduce((total, item) => total + item.quantity, 0));
-    const [paymentSuccess, setPaymentSuccess] = useState<boolean>(false);
-    const [width, height] = useWindowSize();
-    const [haveContactInfo, setHaveContactInfo] = useState<boolean>(false);
-    const [name, setName] = useState<string>('')
-    const [email, setEmail] = useState<string>('');
-    const [street, setStreet] = useState<string>('')
-    const [city, setCity] = useState<string>('')
-    const [zip, setZip] = useState<string>('');
-    const [notes, setNotes] = useState<string>('');
-    const [cartOpen, setCartOpen] = useState<boolean>(false)
+  // Cart holds items that have been added (with quantity > 0)
+  const [cartItems, setCartItems] = useState<IcartItem[]>([]);
+  const [quantity, setQuantity] = useState<number>(0);
+  const [paymentSuccess, setPaymentSuccess] = useState<boolean>(false);
+  const [width, height] = useWindowSize();
+  const [cartOpen, setCartOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    setQuantity(cartItems.reduce((total, item) => total + item.quantity, 0));
+  }, [cartItems]);
 
-    useEffect(() => {
-        setQuantity(cart.reduce((total, item) => total + item.quantity, 0))
-    }, [cart])
+  const addToCart = (item: IcartItem) => {
+    const itemKey = getCartItemKey(item);
+    const existingIndex = cartItems.findIndex(
+      (cartItem) => getCartItemKey(cartItem) === itemKey
+    );
 
-    const removeItemFromCart = (item: IcartItem) => {
-        const newCart = [...cart]
-        const index = newCart.findIndex((i) => i.name === item.name)
-        newCart[index].quantity = 0
-        setCart(newCart)
+    if (existingIndex !== -1) {
+      // Item already in cart, increment quantity
+      const newCart = [...cartItems];
+      newCart[existingIndex].quantity += 1;
+      setCartItems(newCart);
+    } else {
+      // New item, add to cart with quantity 1
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
+  };
 
-    const addToCart = (item: IcartItem) => {
-        const newCart = [...cart]
-        const index = newCart.findIndex((i) => i.name === item.name)
-        newCart[index].quantity += 1
-        setCart(newCart)
+  const removeItemFromCart = (item: IcartItem) => {
+    const itemKey = getCartItemKey(item);
+    setCartItems(cartItems.filter((cartItem) => getCartItemKey(cartItem) !== itemKey));
+  };
+
+  const handleQuantity = (type: string, item: IcartItem) => {
+    const itemKey = getCartItemKey(item);
+    const index = cartItems.findIndex(
+      (cartItem) => getCartItemKey(cartItem) === itemKey
+    );
+
+    if (index === -1) return;
+
+    const newCart = [...cartItems];
+
+    if (type === "+") {
+      newCart[index].quantity += 1;
+      setCartItems(newCart);
+    } else if (type === "-") {
+      newCart[index].quantity -= 1;
+      if (newCart[index].quantity < 1) {
+        removeItemFromCart(item);
+        return;
+      }
+      setCartItems(newCart);
+    } else {
+      removeItemFromCart(item);
     }
+  };
 
-    const handleQuantity = (type: string, item: IcartItem) => {
-        const newCart = [...cart]
-        const index = newCart.findIndex((i) => i.name === item.name)
+  const handlePaymentSuccess = async (shippingInfo: ShippingInfo) => {
+    // Calculate total
+    const total = cartItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
 
-        if (index !== -1) {
+    // Format shipping address
+    const shippingAddress = `${shippingInfo.name}\n${shippingInfo.street}\n${shippingInfo.city}, ${shippingInfo.zip}`;
 
-            if (type === "+") {
-                newCart[index].quantity += 1
-                setQuantity(quantity + 1)
-                setCart(newCart)
-
-            } else if (type === "-") {
-                newCart[index].quantity -= 1
-                if (newCart[index].quantity < 1) {
-                    removeItemFromCart(item)
-                    setQuantity(quantity - 1)
-                    return
-                }
-                setQuantity(quantity - 1)
-                setCart(newCart)
-                console.log('minus')
-            } else {
-                removeItemFromCart(item)
-            }
+    // Format order summary for shop notification
+    const orderDetails = cartItems
+      .map((item) => {
+        let itemDesc = item.name;
+        if (item.selectedSize || item.selectedColor) {
+          const variants = [item.selectedSize, item.selectedColor]
+            .filter(Boolean)
+            .join(", ");
+          itemDesc += ` (${variants})`;
         }
+        return `${itemDesc} x${item.quantity} ($${(
+          item.price * item.quantity
+        ).toFixed(2)})`;
+      })
+      .join("\n");
 
-        else {
-            if (type === "+") {
-                newCart.push({
-                    name: item.name,
-                    quantity: 1,
-                    price: item.price,
-                    photo: item.photo
-                })
-                setQuantity(quantity + 1)
-                setCart(newCart)
-            }
-        }
+    const orderSummary = `🎉 NEW AV SALE! 🎉\n\nORDER DETAILS:\n${orderDetails}\n\nTOTAL: $${total.toFixed(
+      2
+    )}\n\nSHIP TO:\n${shippingAddress}\nEmail: ${shippingInfo.email}\n\nNotes: ${shippingInfo.notes || "None"}`;
+
+    // Send order confirmation (notifies shop + sends receipt to customer)
+    try {
+      await fetch(`${SERVER_URL}/av-api/order-confirmation`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: shippingInfo.name,
+          customerEmail: shippingInfo.email,
+          items: cartItems.map((item) => ({
+            name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+            selectedSize: item.selectedSize,
+            selectedColor: item.selectedColor,
+          })),
+          total,
+          shippingAddress,
+          orderSummary,
+        }),
+      });
+      console.log("Order confirmation sent");
+    } catch (error) {
+      console.error("Failed to send order confirmation:", error);
     }
 
-    const handlePaymentSuccess = () => {
-        const newCart = [...cart]
-        newCart.forEach(c => c.quantity = 0)
-        setCart(newCart)
-        setPaymentSuccess(true);
-    };
+    // Clear the cart
+    setCartItems([]);
+    setPaymentSuccess(true);
+  };
 
-    const handleShippingSubmit = async (e: React.MouseEvent) => {
-        e.preventDefault();
-        const resp = await fetch('https://wabs-server.onrender.com/portfolio/contact', {
-            method: "POST",
-            headers: { "Content-Type": "Application/json" },
-            body: JSON.stringify({
-                senderEmail: 'leerobertdyer@gmail.com',
-                message: `New AV SALE!, DETAILS: {
-                    name: ${name},
-                    email: ${email},
-                    address: ${street} ${city} ${zip},
-                    notes: ${notes}
-                }`
-            })
-        });
-        if (resp.ok) {
-            console.log('message sent');
-            setHaveContactInfo(true)
-        }
+  return (
+    <>
+      {!cartOpen && <Nav />}
 
-
-    }
-
-    return (
-        <>
-  { !cartOpen && <Nav />}
-
-            {paymentSuccess
-                ? !haveContactInfo
-
-                    ? <div className='mainShippingDiv'>
-                        <p className='oneLastStep'>🎉 One Last Step!</p>
-                        <form className='shippingForm'>
-                            <h1 className='contactDetailsTitle'>Shipping Information</h1>
-
-                            <label className='shippingLabel' htmlFor="name">Name
-                                <input name="name" className='shippingInput' type="text" placeholder='Uncle Viktor'
-                                onChange={(e) => setName(e.target.value)}></input>
-                            </label>
-                            <label className='shippingLabel' htmlFor="email">Email
-                                <input className='shippingInput' type="email" name='email' placeholder='MGMT@auntvicki.rocks' required
-                                onChange={(e) => setEmail(e.target.value)}></input>
-                            </label>
-                            <label className='shippingLabel' htmlFor="street">Street Address*
-                                <input className='shippingInput' type="add" name='street' placeholder='69 chicken Alley' required
-                                onChange={(e) => setStreet(e.target.value)}></input>
-                            </label>
-                            <label className='shippingLabel' htmlFor="city">City*
-                                <input className='shippingInput' type="add" name='city' placeholder='Asheville' required
-                                onChange={(e) => setCity(e.target.value)}></input>
-                            </label>
-                            <label className='shippingLabel' htmlFor="zip">Zip Code*
-                                <input className='shippingInput' type="add" name='zip' placeholder='28805' required
-                                onChange={(e) => setZip(e.target.value)}></input>
-                            </label>
-                                <textarea className='shippingTextArea' name='notes' placeholder='Any notes for dear old aunt V?'
-                                onChange={(e) => setNotes(e.target.value)}></textarea>
-                                <button className="shippingSubmitBtn"onClick={(e) => handleShippingSubmit(e)}>Submit</button>
-                        </form>
-                    </div>
-
-                    : <div className='mainPaySuccessDiv' onClick={() => setPaymentSuccess(false)}>
-                        <Confetti width={width} height={height} />
-                        <h1>Thank you!</h1>
-                        <h2>Your payment has been received.</h2>
-                        <h3>And your merch will be in the mail shortly!</h3>
-                        <h4 className='bigX hover' style={{ color: 'red' }}>X</h4>
-                    </div>
-                : <div className='mainMerchDiv'>
-                    <div className='cartHeader' onClick={() => setCartOpen(!cartOpen)}>
-                            <Cart cartItems={cart} handleQuantity={handleQuantity} quantity={quantity} handlePaymentSuccess={handlePaymentSuccess} />
-                    </div>
-                    <div className={cartOpen ? 'cartIsOpen' : "allMerchItemsDiv"}>
-                        <h1><img src='/photos/kiss.png' alt='' className='kiss'></img> Aunt Vicki Merch <img src='/photos/kiss.png' alt='' className='kiss'></img></h1>
-                        {cart.map((item, key) => (
-                            <MerchItem product={item} key={key} addToCart={addToCart} />
-                        ))}
-                    </div>
-                </div>
-            }
-        </>
-    )
+      {paymentSuccess ? (
+        <div
+          className="mainPaySuccessDiv"
+          onClick={() => setPaymentSuccess(false)}
+        >
+          <Confetti width={width} height={height} />
+          <h1>Thank you!</h1>
+          <h2>Your payment has been received.</h2>
+          <h3>And your merch will be in the mail shortly!</h3>
+          <h4 className="bigX hover" style={{ color: "red" }}>
+            X
+          </h4>
+        </div>
+      ) : (
+        <div className="mainMerchDiv">
+          <div className="cartContainer">
+            <Cart
+              cartItems={cartItems}
+              handleQuantity={handleQuantity}
+              quantity={quantity}
+              handlePaymentSuccess={handlePaymentSuccess}
+              onCartOpenChange={setCartOpen}
+            />
+          </div>
+          <div className={cartOpen ? "cartIsOpen" : "allMerchItemsDiv"}>
+            <h1>
+              <img src="/photos/kiss.png" alt="" className="kiss" /> Aunt Vicki
+              Merch <img src="/photos/kiss.png" alt="" className="kiss" />
+            </h1>
+            {allMerchItems.map((item, key) => (
+              <MerchItem product={item} key={key} addToCart={addToCart} />
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
-export default Merch
+export default Merch;

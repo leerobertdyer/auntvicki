@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { PhotoSlide } from '../../Components/PhotoSlide/PhotoSlide'
 import './EPK.css'
 import { ContactStrip } from '../../Components/ContactStrip/ContactStrip'

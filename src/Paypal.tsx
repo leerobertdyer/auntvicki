@@ -1,33 +1,41 @@
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
-// import { useEffect, useState } from 'react';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { IcartItem } from "./types";
 
-const CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID
+const CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
 
 const initialOptions = {
   clientId: CLIENT_ID,
-  currency: 'USD',
+  currency: "USD",
   intent: "capture",
-  // deferLoading: true
-}
+};
 
-interface CartItem {
-  name: string,
-  price: number,
-  quantity: number
-}
-
+// Helper to format item name with variants for PayPal
+const getPayPalItemName = (item: IcartItem): string => {
+  let name = item.name;
+  if (item.selectedSize || item.selectedColor) {
+    const variants = [item.selectedSize, item.selectedColor]
+      .filter(Boolean)
+      .join(", ");
+    name += ` (${variants})`;
+  }
+  return name;
+};
 
 interface PaypalProps {
-  cartData: CartItem[],
-  handlePaymentSuccess: () => void,
-  payPalValue: string
+  cartData: IcartItem[];
+  handlePaymentSuccess: () => void;
+  payPalValue: string;
 }
 
-const Paypal: React.FC<PaypalProps> = ({ cartData, handlePaymentSuccess, payPalValue }) => {
-
-  return (<>
+const Paypal: React.FC<PaypalProps> = ({
+  cartData,
+  handlePaymentSuccess,
+  payPalValue,
+}) => {
+  return (
     <PayPalScriptProvider options={initialOptions}>
-      <PayPalButtons style={{ layout: "vertical" }}
+      <PayPalButtons
+        style={{ layout: "vertical" }}
         createOrder={(_data, actions) => {
           return actions.order.create({
             purchase_units: [
@@ -39,14 +47,14 @@ const Paypal: React.FC<PaypalProps> = ({ cartData, handlePaymentSuccess, payPalV
                     item_total: {
                       currency_code: "USD",
                       value: payPalValue,
-                    }
-                  }
+                    },
+                  },
                 },
                 items: cartData.map((item) => ({
-                  name: item.name,
+                  name: getPayPalItemName(item),
                   unit_amount: {
                     value: item.price.toFixed(2),
-                    currency_code: 'USD',
+                    currency_code: "USD",
                   },
                   quantity: item.quantity.toString(),
                 })),
@@ -54,40 +62,35 @@ const Paypal: React.FC<PaypalProps> = ({ cartData, handlePaymentSuccess, payPalV
             ],
           });
         }}
-
-
-
         onApprove={async (data, actions) => {
-          console.log("data: ", data)
+          console.log("PayPal onApprove data:", data);
 
           try {
             if (actions && actions.order) {
-
               const captureDetails = await actions.order.capture();
 
-              if (captureDetails.status === 'COMPLETED') {
-                console.log('Payment executed successfully');
+              if (captureDetails.status === "COMPLETED") {
+                console.log("Payment executed successfully:", captureDetails);
                 handlePaymentSuccess();
-                console.log(data)
               } else {
-                console.error('Payment execution failed');
+                console.error("Payment execution failed:", captureDetails);
               }
             }
           } catch (error) {
-            console.error('Payment execution error:', error);
+            console.error("Payment execution error:", error);
           }
         }}
-
         onError={(err) => {
-          console.error('Payment error:', err);
-          console.log('payPalValue value', payPalValue);
-
-        }} />
-        
+          console.error("PayPal error:", err);
+          console.log("payPalValue:", payPalValue);
+          console.log("cartData:", cartData);
+        }}
+        onCancel={(data) => {
+          console.log("Payment cancelled:", data);
+        }}
+      />
     </PayPalScriptProvider>
-  </>
-  )
-}
+  );
+};
 
-
-export default Paypal
+export default Paypal;

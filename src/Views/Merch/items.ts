@@ -51,10 +51,4 @@ export const allMerchItems: IcartItem[] = [
     price: 65,
     photos: [ "/photos/jacket3B.jpeg", "/photos/jacket3A.JPG", "/photos/jacket3C.jpeg"],
   },
-  {
-    name: "test",
-    quantity: 0,
-    price: 1,
-    photos: [ "/photos/test.jpeg"],
-  }
 ];

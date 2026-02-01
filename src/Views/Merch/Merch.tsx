@@ -108,7 +108,7 @@ function Merch() {
 
     // Send order confirmation (notifies shop + sends receipt to customer)
     try {
-      await fetch(`${SERVER_URL}/av-api/order-confirmation`, {
+      await fetch(`${SERVER_URL}/av/order-confirmation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

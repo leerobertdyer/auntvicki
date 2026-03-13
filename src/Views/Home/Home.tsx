@@ -4,8 +4,6 @@ import Videos from "../../Components/Videos/Videos"
 import { getPublicCalendarEvents } from "../../googleAPI"
 import { useEffect, useState } from "react"
 import Event from "../../Components/Event/Event"
-import Footer from "../../Components/Footer/Footer"
-
 
 interface Ievent{
     summary: string,
@@ -26,6 +24,7 @@ const Home = () => {
             const now = new Date()
             const latestEvents = await getPublicCalendarEvents();
             const data = latestEvents.data
+            console.log(data)
             const items = data.items
             const nextEvents = []
             for (const item of items) {
@@ -63,7 +62,6 @@ const Home = () => {
             </div>
             <Videos />
             <Event events={events} />
-            <Footer />
         </>
     )
 }

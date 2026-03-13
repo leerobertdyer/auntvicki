@@ -17,11 +17,11 @@ export const PhotoSlide: React.FC<IPhotoSlide> = ({ onPhotoSelection }) => {
             text: 'PRESS'
         },
         {
-            photoUrl: '/photos/drewLights.jpg',
+            photoUrl: '/photos/drewBlackAndWhite.jpg',
             text: 'PHOTOS'
         },
         {
-            photoUrl: '/photos/tristagainRev.jpg',
+            photoUrl: '/photos/gregg2.jpg',
             text: 'ABOUT'
         },
         {

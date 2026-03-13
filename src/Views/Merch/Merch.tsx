@@ -44,6 +44,7 @@ function Merch() {
       // New item, add to cart with quantity 1
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
+    setCartOpen(true)
   };
 
   const removeItemFromCart = (item: IcartItem) => {
@@ -154,21 +155,25 @@ function Merch() {
           </h4>
         </div>
       ) : (
-        <div className="mainMerchDiv">
+        <div className="mainMerchDiv" 
+          style={{ cursor: cartOpen ? "pointer" : '' }}
+        >
           <div className="cartContainer">
             <Cart
               cartItems={cartItems}
               handleQuantity={handleQuantity}
               quantity={quantity}
               handlePaymentSuccess={handlePaymentSuccess}
-              onCartOpenChange={setCartOpen}
+              setCartOpen={setCartOpen}
+              cartOpen={cartOpen}
             />
           </div>
-          <div className={cartOpen ? "cartIsOpen" : "allMerchItemsDiv"}>
-            <h1>
+          <div className={"allMerchItemsDiv"}>
+            <h1 style={{ margin: '20px 0 0 0'}}>
               <img src="/photos/kiss.png" alt="" className="kiss" /> Aunt Vicki
               Merch <img src="/photos/kiss.png" alt="" className="kiss" />
             </h1>
+            <p className="tinyHeader">Free Shipping</p>
             {allMerchItems.map((item, key) => (
               <MerchItem product={item} key={key} addToCart={addToCart} />
             ))}

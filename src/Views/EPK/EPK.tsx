@@ -56,18 +56,18 @@ const EPK = () => {
 
     const allBioElements: Ibio[] = [
         {
-            name: "Tristan Smith",
+            name: "Gregg Weber",
             title: "Drummer",
-            bio: "When he isn't holding the groove for old Aunt Vicki, you can find tristan singing, and playing guitar and bass in at least a couple of his own bands:",
+            bio: "When he isn't holding the groove for old Aunt Vicki, you can find Greg singing, and playing guitar in at least a couple of his own bands:",
             links: [{
-                href: 'https://www.instagram.com/watches.nc/',
-                title: 'Watches'
+                href: 'https://www.instagram.com/bombaygasoline/',
+                title: 'Bombay Gasoline'
             },
             {
-                href: 'https://thefloralhygienists.bandcamp.com/album/the-floral-hygienists',
-                title: "Floral Hygienists"
+                href: 'https://www.instagram.com/machine13_theband/',
+                title: "Machine 13"
             }],
-            photo: "/photos/teaDawggy.jpeg"
+            photo: "/photos/gregg2.jpg"
         },
 
         {

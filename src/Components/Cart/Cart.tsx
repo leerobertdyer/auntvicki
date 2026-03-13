@@ -30,7 +30,8 @@ interface CartProps {
   handleQuantity: (type: string, item: IcartItem) => void;
   quantity: number;
   handlePaymentSuccess: (shippingInfo: ShippingInfo) => void;
-  onCartOpenChange?: (isOpen: boolean) => void;
+  cartOpen: boolean;
+  setCartOpen: (b: boolean) => void;
 }
 
 const Cart: React.FC<CartProps> = ({
@@ -38,13 +39,12 @@ const Cart: React.FC<CartProps> = ({
   handleQuantity,
   quantity,
   handlePaymentSuccess,
-  onCartOpenChange,
+  cartOpen,
+  setCartOpen
 }) => {
-  const [showCart, setShowCart] = useState<boolean>(false);
 
   const toggleCart = (open: boolean) => {
-    setShowCart(open);
-    onCartOpenChange?.(open);
+    setCartOpen(open);
   };
   const [allCartItems, setAllCartItems] = useState<IcartItem[]>(
     cartItems.filter((i) => i.quantity > 0)
@@ -117,7 +117,7 @@ const Cart: React.FC<CartProps> = ({
 
   return (
     <div className="cartMainDiv">
-      {showCart ? (
+      {cartOpen ? (
         <>
           {/* Overlay to close cart when clicking outside */}
           <div className="cartOverlay" onClick={closeCart} />
